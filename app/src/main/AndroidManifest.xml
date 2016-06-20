@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.administrator.myapp" >
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="ui.IsFirstIn"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="ui.GuidePage"
+            android:label="@string/title_activity_guide_page" >
+        </activity>
+        <activity
+            android:name="ui.Welcome"
+            android:label="@string/title_activity_welcome" >
+        </activity>
+        <activity
+            android:name="ui.Main"
+            android:label="@string/title_activity_main"
+            android:launchMode="singleTask" >
+        </activity>
+        <activity
+            android:name="ui.ShowCars"
+            android:label="@string/title_activity_show_cars" >
+        </activity>
+        <activity
+            android:name="ui.CarDetail"
+            android:label="@string/title_activity_car_detail" >
+        </activity>
+        <activity
+            android:name="ui.ShowParts"
+            android:label="@string/title_activity_show_parts" >
+        </activity>
+        <activity
+            android:name="ui.Login"
+            android:label="@string/title_activity_login" >
+        </activity>
+        <activity
+            android:name="ui.Search"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name="ui.ShowSerial"
+            android:label="@string/title_activity_show_serial" >
+        </activity>
+        <activity
+            android:name="ui.RegFirst"
+            android:label="@string/title_activity_reg_first" >
+        </activity>
+        <activity
+            android:name="ui.RegLast"
+            android:label="@string/title_activity_reg_last" >
+        </activity>
+        <activity
+            android:name="ui.RegNext"
+            android:label="@string/title_activity_reg_next" >
+        </activity>
+        <activity
+            android:name="ui.RegPswSet"
+            android:label="@string/title_activity_reg_psw_set" >
+        </activity>
+        <activity
+            android:name="ui.ShowIndent"
+            android:label="@string/title_activity_show_indent" >
+        </activity>
+        <activity
+            android:name="ui.ShowCollect"
+            android:label="@string/title_activity_show_collect" >
+        </activity>
+        <activity
+            android:name="ui.ShowDetail"
+            android:label="@string/title_activity_show_detail" >
+        </activity>
+        <activity
+            android:name="ui.WaitIncomeGoods"
+            android:label="@string/title_activity_wait_income_goods" >
+        </activity>
+        <activity
+            android:name="ui.UserInfoManage"
+            android:label="@string/title_activity_user_info_manage" >
+        </activity>
+        <activity
+            android:name="ui.UpdatePwd"
+            android:label="@string/title_activity_update_pwd" >
+        </activity>
+        <activity
+            android:name="ui.MyIndent"
+            android:label="@string/title_activity_my_indent" >
+        </activity>
+    </application>
+
+</manifest>
