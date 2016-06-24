@@ -136,7 +136,7 @@ public class IndentDAO {
 	/**
 	 * �޸�
 	 * 
-	 * @param shoppingCart
+	 * @param indent
 	 */
 	public void updateIndent(Indent indent) {
 		open();

@@ -1,7 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ralph.second" >
+    package="ui" >
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
     <application
         android:allowBackup="true"
@@ -9,7 +35,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="ui.IsFirstIn"
+            android:name=".IsFirstIn"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,84 +44,84 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="ui.GuidePage"
+            android:name=".GuidePage"
             android:label="@string/title_activity_guide_page" >
         </activity>
         <activity
-            android:name="ui.Welcome"
+            android:name=".Welcome"
             android:label="@string/title_activity_welcome" >
         </activity>
         <activity
-            android:name="ui.Main"
+            android:name=".Main"
             android:label="@string/title_activity_main"
             android:launchMode="singleTask" >
         </activity>
         <activity
-            android:name="ui.ShowCars"
+            android:name=".ShowCars"
             android:label="@string/title_activity_show_cars" >
         </activity>
         <activity
-            android:name="ui.CarDetail"
+            android:name=".CarDetail"
             android:label="@string/title_activity_car_detail" >
         </activity>
         <activity
-            android:name="ui.ShowParts"
+            android:name=".ShowParts"
             android:label="@string/title_activity_show_parts" >
         </activity>
         <activity
-            android:name="ui.Login"
+            android:name=".Login"
             android:label="@string/title_activity_login" >
         </activity>
         <activity
-            android:name="ui.Search"
+            android:name=".Search"
             android:label="@string/title_activity_search" >
         </activity>
         <activity
-            android:name="ui.ShowSerial"
+            android:name=".ShowSerial"
             android:label="@string/title_activity_show_serial" >
         </activity>
         <activity
-            android:name="ui.RegFirst"
+            android:name=".RegFirst"
             android:label="@string/title_activity_reg_first" >
         </activity>
         <activity
-            android:name="ui.RegLast"
+            android:name=".RegLast"
             android:label="@string/title_activity_reg_last" >
         </activity>
         <activity
-            android:name="ui.RegNext"
+            android:name=".RegNext"
             android:label="@string/title_activity_reg_next" >
         </activity>
         <activity
-            android:name="ui.RegPswSet"
+            android:name=".RegPswSet"
             android:label="@string/title_activity_reg_psw_set" >
         </activity>
         <activity
-            android:name="ui.ShowIndent"
+            android:name=".ShowIndent"
             android:label="@string/title_activity_show_indent" >
         </activity>
         <activity
-            android:name="ui.ShowCollect"
+            android:name=".ShowCollect"
             android:label="@string/title_activity_show_collect" >
         </activity>
         <activity
-            android:name="ui.ShowDetail"
+            android:name=".ShowDetail"
             android:label="@string/title_activity_show_detail" >
         </activity>
         <activity
-            android:name="ui.WaitIncomeGoods"
+            android:name=".WaitIncomeGoods"
             android:label="@string/title_activity_wait_income_goods" >
         </activity>
         <activity
-            android:name="ui.UserInfoManage"
+            android:name=".UserInfoManage"
             android:label="@string/title_activity_user_info_manage" >
         </activity>
         <activity
-            android:name="ui.UpdatePwd"
+            android:name=".UpdatePwd"
             android:label="@string/title_activity_update_pwd" >
         </activity>
         <activity
-            android:name="ui.MyIndent"
+            android:name=".MyIndent"
             android:label="@string/title_activity_my_indent" >
         </activity>
     </application>

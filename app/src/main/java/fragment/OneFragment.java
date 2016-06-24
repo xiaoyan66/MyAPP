@@ -55,22 +55,16 @@ public class OneFragment extends Fragment {
 
 	// �������
 	private List<View> ar;
-	private GuidePageAdapter adapter;
 
 	private AtomicInteger atomicInteger = new AtomicInteger();
 
 	// ImageView
 	private ImageView mImages[];
-	private ImageView mImage;
 
-	private BrandDAO brandDAO;
 	private List brandList;
-	private BrandAdapter brandAdapter;
 
 	private PartsDAO partsDAO;
-	private Parts parts;
 	private List partsList;
-	private PartsAdapter partsAdapter;
 
 	// �����������ʵ��fragment֮��ͨ�ŵĽӿ�
 	private Main.MyCommunication myCommunication;
@@ -89,7 +83,7 @@ public class OneFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		view = inflater.inflate(R.layout.one_fragment, null);
+		view = inflater.inflate(R.layout.one_fragment, container);
 		// ��ʼ���ؼ�
 		initView();
 		// ��������
@@ -111,14 +105,14 @@ public class OneFragment extends Fragment {
 
 	// ��������
 	private void initData() {
-		brandDAO = new BrandDAO(getActivity());
+		BrandDAO brandDAO = new BrandDAO(getActivity());
 		brandList = brandDAO.getEightBrand();
-		brandAdapter = new BrandAdapter(getActivity(), brandList);
+		BrandAdapter brandAdapter = new BrandAdapter(getActivity(), brandList);
 		mGvbrand.setAdapter(brandAdapter);
 
 		partsDAO = new PartsDAO(getActivity());
 		partsList = partsDAO.getFourParts();
-		partsAdapter = new PartsAdapter(getActivity(), partsList);
+		PartsAdapter partsAdapter = new PartsAdapter(getActivity(), partsList);
 		mGvParts.setAdapter(partsAdapter);
 
 	}
@@ -139,37 +133,37 @@ public class OneFragment extends Fragment {
 		ViewGroup viewGroup = (ViewGroup) view.findViewById(R.id.rounddot);
 
 		// �ڶ���������������
-		ar = new ArrayList<View>();
+		ar = new ArrayList<>();
 		View v0 = getActivity().getLayoutInflater().inflate(
-				R.layout.advertise_item, null);
+				R.layout.advertise_item,viewGroup);
 		LinearLayout l0 = (LinearLayout) v0.findViewById(R.id.advertise_item);
 		l0.setBackgroundResource(R.drawable.main_page1);
 		ar.add(l0);
 
 		View v1 = getActivity().getLayoutInflater().inflate(
-				R.layout.advertise_item, null);
+				R.layout.advertise_item, viewGroup);
 		LinearLayout l1 = (LinearLayout) v1.findViewById(R.id.advertise_item);
 		l1.setBackgroundResource(R.drawable.main_page2);
 		ar.add(l1);
 
 		View v2 = getActivity().getLayoutInflater().inflate(
-				R.layout.advertise_item, null);
+				R.layout.advertise_item, viewGroup);
 		LinearLayout l2 = (LinearLayout) v2.findViewById(R.id.advertise_item);
 		l2.setBackgroundResource(R.drawable.main_page3);
 		ar.add(l2);
 
 		View v3 = getActivity().getLayoutInflater().inflate(
-				R.layout.advertise_item, null);
+				R.layout.advertise_item, viewGroup);
 		LinearLayout l3 = (LinearLayout) v3.findViewById(R.id.advertise_item);
 		l3.setBackgroundResource(R.drawable.main_page4);
 		ar.add(l3);
 
-		adapter = new GuidePageAdapter(getActivity(), ar);
+		GuidePageAdapter adapter = new GuidePageAdapter(getActivity(), ar);
 		viewPager.setAdapter(adapter);
 
 		mImages = new ImageView[ar.size()];
 		for (int i = 0; i < ar.size(); i++) {
-			mImage = new ImageView(getActivity());
+			ImageView mImage = new ImageView(getActivity());
 			// ����ͼƬ��͸�
 			LayoutParams layoutParams = new LayoutParams(9, 9);
 			layoutParams.setMargins(10, 5, 10, 5);
@@ -297,7 +291,7 @@ public class OneFragment extends Fragment {
 			// ����Ʒ�Ʊ�Ų�ѯ���г�ϵ
 
 			partsDAO = new PartsDAO(getActivity());
-			parts = partsDAO.getAllPartsById(pid);
+			Parts parts = partsDAO.getAllPartsById(pid);
 
 			// ��Ʒ����(��ţ����ƣ�ͼƬ����棬ԭ�ۣ��ּۣ�Ʒ�ƣ�����)
 

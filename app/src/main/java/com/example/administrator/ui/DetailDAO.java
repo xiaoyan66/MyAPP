@@ -35,7 +35,7 @@ public class DetailDAO {
 	/**
 	 * ���ɶ�������
 	 * 
-	 * @param indent
+	 * @param detail
 	 */
 	public void addDetail(Detail detail) {
 		open();

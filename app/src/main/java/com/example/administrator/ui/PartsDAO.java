@@ -92,7 +92,7 @@ public class PartsDAO {
 	/**
 	 * ���ݱ�Ų�ѯ��Ʒ
 	 * 
-	 * @param sid
+	 * @param id
 	 * @return
 	 */
 	public Parts getAllPartsById(int id) {

@@ -631,7 +631,7 @@ containing a value of this type.
             0x7f01000c
         };
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#activeColor}
+          <p>This symbol is the offset where the {@link ui.R.attr#activeColor}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -646,7 +646,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_activeColor = 0;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#activeRadius}
+          <p>This symbol is the offset where the {@link ui.R.attr#activeRadius}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -662,7 +662,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_activeRadius = 8;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#activeType}
+          <p>This symbol is the offset where the {@link ui.R.attr#activeType}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -679,7 +679,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_activeType = 6;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#centered}
+          <p>This symbol is the offset where the {@link ui.R.attr#centered}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -693,7 +693,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_centered = 3;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#circleSeparation}
+          <p>This symbol is the offset where the {@link ui.R.attr#circleSeparation}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -709,7 +709,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_circleSeparation = 7;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#fadeOut}
+          <p>This symbol is the offset where the {@link ui.R.attr#fadeOut}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -723,7 +723,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_fadeOut = 4;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#inactiveColor}
+          <p>This symbol is the offset where the {@link ui.R.attr#inactiveColor}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -738,7 +738,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_inactiveColor = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#inactiveType}
+          <p>This symbol is the offset where the {@link ui.R.attr#inactiveType}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -755,7 +755,7 @@ containing a value of this type.
         */
         public static final int CircleFlowIndicator_inactiveType = 5;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#radius}
+          <p>This symbol is the offset where the {@link ui.R.attr#radius}
           attribute's value can be found in the {@link #CircleFlowIndicator} array.
 
 
@@ -784,7 +784,7 @@ containing a value of this type.
             0x7f010003
         };
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#sidebuffer}
+          <p>This symbol is the offset where the {@link ui.R.attr#sidebuffer}
           attribute's value can be found in the {@link #ViewFlow} array.
 
 
@@ -815,7 +815,7 @@ containing a value of this type.
             0x7f010000, 0x7f010001, 0x7f010002
         };
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#border_inside_color}
+          <p>This symbol is the offset where the {@link ui.R.attr#border_inside_color}
           attribute's value can be found in the {@link #roundedimageview} array.
 
 
@@ -830,7 +830,7 @@ containing a value of this type.
         */
         public static final int roundedimageview_border_inside_color = 1;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#border_outside_color}
+          <p>This symbol is the offset where the {@link ui.R.attr#border_outside_color}
           attribute's value can be found in the {@link #roundedimageview} array.
 
 
@@ -845,7 +845,7 @@ containing a value of this type.
         */
         public static final int roundedimageview_border_outside_color = 2;
         /**
-          <p>This symbol is the offset where the {@link com.ywb.ui.R.attr#border_thickness}
+          <p>This symbol is the offset where the {@link ui.R.attr#border_thickness}
           attribute's value can be found in the {@link #roundedimageview} array.
 
 

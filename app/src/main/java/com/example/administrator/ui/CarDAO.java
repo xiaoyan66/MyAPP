@@ -70,7 +70,7 @@ public class CarDAO {
 	/**
 	 * ���ݱ�Ų�ѯ����
 	 * 
-	 * @param sid
+	 * @param id
 	 * @return
 	 */
 	public Car getAllCarById(int id) {
