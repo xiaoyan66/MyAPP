@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import ui.R;
+
 public class IndentAdapter extends BaseAdapter
 {
 	private Context context;

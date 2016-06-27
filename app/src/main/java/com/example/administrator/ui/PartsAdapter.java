@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import ui.R;
 import view.RoundImageView;
 
 public class PartsAdapter extends BaseAdapter

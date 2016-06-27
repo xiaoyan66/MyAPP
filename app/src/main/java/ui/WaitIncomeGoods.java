@@ -14,7 +14,7 @@ import com.example.administrator.ui.IndentDAO;
 import util.ActivityCollector;
 
 /**
- * ���ջ�
+ * 待收货
  * @author Administrator
  *
  */
@@ -31,9 +31,9 @@ public class WaitIncomeGoods extends Activity {
 		setContentView(R.layout.activity_wait_income_goods);
 		ActivityCollector.addActivity(this);
 		indentDAO = new IndentDAO(WaitIncomeGoods.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 	}
 
@@ -45,7 +45,7 @@ public class WaitIncomeGoods extends Activity {
 	}
 
 	/**
-	 * ��������
+	 * 加载数据
 	 */
 	private void initData() {
 		Intent intent = getIntent();

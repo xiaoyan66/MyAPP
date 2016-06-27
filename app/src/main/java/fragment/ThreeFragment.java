@@ -16,6 +16,7 @@ import android.widget.ListView;
 import com.example.administrator.ui.PartsDAO;
 import com.example.administrator.ui.PartsListAdapter;
 
+import ui.R;
 import ui.ShowParts;
 
 
@@ -30,14 +31,14 @@ public class ThreeFragment extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.three_fragment, null);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 		return view;
 	}
 
-	// ��������
+	// 加载数据
 	private void initData() {
 		partsDAO = new PartsDAO(getActivity());
 		ar = partsDAO.getAllParts();
@@ -46,7 +47,7 @@ public class ThreeFragment extends Fragment {
 
 	}
 
-	// ��ʼ���ؼ�
+	// 初始化控件
 	private void initView() {
 		mLvParts = (ListView) view.findViewById(R.id.lv_parts);
 		mLvParts.setOnItemClickListener(lv_listener);

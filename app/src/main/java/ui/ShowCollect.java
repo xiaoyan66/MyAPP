@@ -32,11 +32,11 @@ public class ShowCollect extends Activity {
 	private CollectAdapter collectAdapter;
 	private List ar;
 
-	// ������
+	// 汽车表
 	private Car car;
 	private CarDAO carDAO;
 
-	// ��Ʒ
+	// 饰品
 	private Parts parts;
 	private PartsDAO partsDAO;
 
@@ -49,9 +49,9 @@ public class ShowCollect extends Activity {
 		collectDAO = new CollectDAO(ShowCollect.this);
 		carDAO = new CarDAO(ShowCollect.this);
 		partsDAO = new PartsDAO(ShowCollect.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 	}
 
@@ -62,7 +62,7 @@ public class ShowCollect extends Activity {
 		ActivityCollector.removeActivity(this);
 	}
 	/**
-	 * ��������
+	 * 加载数据
 	 */
 	private void initData() {
 		ar = collectDAO.getAllCollect();
@@ -71,30 +71,30 @@ public class ShowCollect extends Activity {
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mLvCollects = (ListView) this.findViewById(R.id.lv_collects);
 
-		// ListView����¼�
+		// ListView点击事件
 		mLvCollects.setOnItemClickListener(lv_listener);
 	}
 
 	/**
-	 * ListView����¼�
+	 * ListView点击事件
 	 */
 	OnItemClickListener lv_listener = new OnItemClickListener() {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
+								long arg3) {
 			Map map = (Map) ar.get(arg2);
 			int gid = Integer.parseInt(map.get("gid").toString());
 			int gsource = Integer.parseInt(map.get("gsource").toString());
 			if (gsource == 1) {
-				// ������Ʒ��Ų�ѯ��Ӧ��������Ϣ
+				// 根据物品编号查询对应的汽车信息
 				car = carDAO.getAllCarById(gid);
-				// ��������ţ���ϵ�����ƣ�ͼƬ�����𡢷������������䡢�ṹ��ԭ�ۡ��ּۣ�
+				// 车辆（编号，车系，名称，图片，级别、发动机、变速箱、结构、原价、现价）
 				int cid = car.get_id();
 				int sid = car.getSid();
 				String cname = car.getCname();
@@ -120,7 +120,7 @@ public class ShowCollect extends Activity {
 				startActivity(intent);
 				ShowCollect.this.finish();
 			} else {
-				// ������Ʒ��Ų�ѯ��Ӧ����Ʒ
+				// 根据物品编号查询对应的饰品
 				parts = partsDAO.getAllPartsById(gid);
 
 				int pid = parts.get_id();

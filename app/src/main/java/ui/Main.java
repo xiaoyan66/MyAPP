@@ -1,5 +1,6 @@
 package ui;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -7,9 +8,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import fragment.FiveFragment;
 import fragment.FourFragment;
@@ -21,8 +27,8 @@ import util.ActivityCollector;
 
 /**
  * ������
- * @author Administrator
  *
+ * @author Administrator
  */
 public class Main extends FragmentActivity {
 	private OneFragment oneFragment;
@@ -30,12 +36,6 @@ public class Main extends FragmentActivity {
 	private ThreeFragment threeFragment;
 	private FourFragment fourFragment;
 	private FiveFragment fiveFragment;
-
-	private LinearLayout mOneLay;
-	private LinearLayout mTwoLay;
-	private LinearLayout mThreeLay;
-	private LinearLayout mFourLay;
-	private LinearLayout mFiveLay;
 
 	private ImageView mOneImage;
 	private ImageView mTwoImage;
@@ -58,7 +58,7 @@ public class Main extends FragmentActivity {
 		setContentView(R.layout.activity_main);
 		ActivityCollector.addActivity(this);
 		manager = getSupportFragmentManager();
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
 
 		getFragment(1);
@@ -70,13 +70,13 @@ public class Main extends FragmentActivity {
 		super.onDestroy();
 		ActivityCollector.removeActivity(this);
 	}
-	// ��ʼ���ؼ�
+	// 初始化控件
 	private void initView() {
-		mOneLay = (LinearLayout) this.findViewById(R.id.ll_tab_1);
-		mTwoLay = (LinearLayout) this.findViewById(R.id.ll_tab_2);
-		mThreeLay = (LinearLayout) this.findViewById(R.id.ll_tab_3);
-		mFourLay = (LinearLayout) this.findViewById(R.id.ll_tab_4);
-		mFiveLay = (LinearLayout) this.findViewById(R.id.ll_tab_5);
+		LinearLayout mOneLay = (LinearLayout) this.findViewById(R.id.ll_tab_1);
+		LinearLayout mTwoLay = (LinearLayout) this.findViewById(R.id.ll_tab_2);
+		LinearLayout mThreeLay = (LinearLayout) this.findViewById(R.id.ll_tab_3);
+		LinearLayout mFourLay = (LinearLayout) this.findViewById(R.id.ll_tab_4);
+		LinearLayout mFiveLay = (LinearLayout) this.findViewById(R.id.ll_tab_5);
 
 		mOneImage = (ImageView) this.findViewById(R.id.iv_tab_1);
 		mTwoImage = (ImageView) this.findViewById(R.id.iv_tab_2);
@@ -90,7 +90,7 @@ public class Main extends FragmentActivity {
 		mFourText = (TextView) this.findViewById(R.id.tv_tab_4);
 		mFiveText = (TextView) this.findViewById(R.id.tv_tab_5);
 
-		// Tab����¼�
+		// Tab点击事件
 		mOneLay.setOnClickListener(lay_listener);
 		mTwoLay.setOnClickListener(lay_listener);
 		mThreeLay.setOnClickListener(lay_listener);
@@ -127,11 +127,11 @@ public class Main extends FragmentActivity {
 	};
 
 	private void getFragment(int i) {
-		// ����ͼƬ������Ϊ��ɫ
+		// 重置图片和字体为暗色
 		resetImageAndText();
-		// ��������
+		// 开启事务
 		FragmentTransaction transaction = manager.beginTransaction();
-		// ��������Fragment
+		// 隐藏所有Fragment
 		hideFragment(transaction);
 
 		if (i == 1) {
@@ -141,7 +141,7 @@ public class Main extends FragmentActivity {
 				oneFragment = new OneFragment();
 				transaction.add(R.id.fl_content, oneFragment);
 
-				// ����Fragment֮��ͨ�ŵķ���
+				// 调用Fragment之间通信的方法
 				oneFragment.jumpFragment(new MyCommunication() {
 
 					@Override
@@ -202,11 +202,11 @@ public class Main extends FragmentActivity {
 			}
 		}
 
-		// �ύ���񣡣���
+		// 提交事务！！！
 		transaction.commit();
 	}
 
-	// �������е�Fragment
+	// 隐藏所有的Fragment
 	private void hideFragment(FragmentTransaction transaction) {
 		if (oneFragment != null) {
 			transaction.hide(oneFragment);
@@ -226,7 +226,7 @@ public class Main extends FragmentActivity {
 
 	}
 
-	// ����ͼƬΪ��ɫ
+	// 重置图片为暗色
 	private void resetImageAndText() {
 		mOneImage.setImageResource(R.drawable.main_tab1_nomal);
 		mOneText.setTextColor(this.getResources().getColor(R.color.black));
@@ -245,7 +245,7 @@ public class Main extends FragmentActivity {
 	}
 
 	/**
-	 * ����һ���ӿڣ�ʵ������Fragment֮���ͨ��
+	 * 定义一个接口，实现两个Fragment之间的通信
 	 */
 	public interface MyCommunication {
 		public void getResultFragment(int indx);

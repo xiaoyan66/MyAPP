@@ -25,8 +25,8 @@ import fragment.NoCompleteIndent;
  *
  */
 public class MyIndent extends FragmentActivity {
-	private CompleteIndent completeIndent;// ����ɶ���
-	private NoCompleteIndent noCompleteIndent;// δ��ɶ���
+	private CompleteIndent completeIndent;// 已完成订单
+	private NoCompleteIndent noCompleteIndent;// 未完成订单
 
 	private ViewPager mVpMyIndent;
 	private Button mBtnCompleteYes;
@@ -41,37 +41,37 @@ public class MyIndent extends FragmentActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_my_indent);
 		fragmentManager = getSupportFragmentManager();
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ���¼�
+		// 加事件
 		initEvent();
 	}
 
 	/**
-	 * ���¼�
+	 * 加事件
 	 */
 	private void initEvent() {
-		// ��ť����¼�
+		// 按钮点击事件
 		mBtnCompleteYes.setOnClickListener(listener);
 		mBtnCompleteNo.setOnClickListener(listener);
 
-		// ViewPager�����¼�
+		// ViewPager滑动事件
 		mVpMyIndent.setOnPageChangeListener(vp_listener);
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mVpMyIndent = (ViewPager) this.findViewById(R.id.vp_myindent);
 		mBtnCompleteYes = (Button) this.findViewById(R.id.btn_complete_yes);
 		mBtnCompleteNo = (Button) this.findViewById(R.id.btn_complete_no);
 
-		// ʵ����FragMent
+		// 实例化FragMent
 		completeIndent = new CompleteIndent();
 		noCompleteIndent = new NoCompleteIndent();
 
-		// ��FragMent��ӵ�������
+		// 将FragMent添加到数组中
 		List ar = new ArrayList();
 		ar.add(completeIndent);
 		ar.add(noCompleteIndent);
@@ -79,13 +79,13 @@ public class MyIndent extends FragmentActivity {
 		myIndentAdapter = new MyIndentAdapter(fragmentManager, ar);
 		mVpMyIndent.setAdapter(myIndentAdapter);
 
-		// Ĭ��ѡ���һ��
+		// 默认选择第一个
 		mVpMyIndent.setCurrentItem(0);
 
 	}
 
 	/**
-	 * ��ť����¼�
+	 * 按钮点击事件
 	 */
 	OnClickListener listener = new OnClickListener() {
 
@@ -101,25 +101,25 @@ public class MyIndent extends FragmentActivity {
 	};
 
 	/**
-	 * ViewPager�����¼�
+	 * ViewPager滑动事件
 	 */
 	OnPageChangeListener vp_listener = new OnPageChangeListener() {
 
 		@Override
 		public void onPageSelected(int arg0) {
-			// �����ʽ
+			// 清除样式
 			clearStyle();
 			switch (arg0) {
-			case 0:
-				mBtnCompleteYes.setBackgroundColor(Color.parseColor("#e0620d"));
+				case 0:
+					mBtnCompleteYes.setBackgroundColor(Color.parseColor("#e0620d"));
 
-				break;
-			case 1:
-				mBtnCompleteNo.setBackgroundColor(Color.parseColor("#e0620d"));
+					break;
+				case 1:
+					mBtnCompleteNo.setBackgroundColor(Color.parseColor("#e0620d"));
 
-				break;
-			default:
-				break;
+					break;
+				default:
+					break;
 			}
 		}
 
@@ -137,7 +137,7 @@ public class MyIndent extends FragmentActivity {
 	};
 
 	/**
-	 * �����ʽ
+	 * 清除样式
 	 */
 	private void clearStyle() {
 		mBtnCompleteYes.setBackgroundColor(Color.parseColor("#FF5809"));

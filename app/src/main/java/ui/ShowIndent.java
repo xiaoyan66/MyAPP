@@ -34,10 +34,10 @@ public class ShowIndent extends Activity {
 	private TextView mTvAllPrice;
 	private TextView mTvIndentNumber;
 
-	// ȷ������
+	// 确定付款
 	private Button mBtnPayment;
 
-	// ��������
+	// 订单详情
 	private Detail detail;
 	private DetailDAO detailDAO;
 	private String indentNumber;
@@ -64,9 +64,9 @@ public class ShowIndent extends Activity {
 		ActivityCollector.addActivity(this);
 		indentDAO = new IndentDAO(ShowIndent.this);
 		detailDAO = new DetailDAO(ShowIndent.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 	}
 
@@ -78,7 +78,7 @@ public class ShowIndent extends Activity {
 	}
 
 	/**
-	 * ��������
+	 * 加载数据
 	 */
 	private void initData() {
 		Intent intent = getIntent();
@@ -93,7 +93,7 @@ public class ShowIndent extends Activity {
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mLvIndents = (ListView) this.findViewById(R.id.lv_indents);
@@ -106,34 +106,34 @@ public class ShowIndent extends Activity {
 	}
 
 	/**
-	 * �������ؼ�
+	 * 监听返回键
 	 */
 	// @Override
 	// public boolean onKeyDown(int keyCode, KeyEvent event) {
 	// if (keyCode == KeyEvent.KEYCODE_BACK) {
-	// // �����˳��Ի���
+	// // 创建退出对话框
 	// AlertDialog isExit = new AlertDialog.Builder(this).create();
-	// // ���öԻ������
-	// isExit.setTitle("ϵͳ��ʾ");
-	// // ���öԻ�����Ϣ
-	// isExit.setMessage("ȷ��Ҫ�˳�������˳�����������գ�");
+	// // 设置对话框标题
+	// isExit.setTitle("系统提示");
+	// // 设置对话框消息
+	// isExit.setMessage("确定要退出吗？如果退出订单将被清空！");
 	//
-	// // ���ѡ��ť��ע�����
-	// isExit.setButton("ȷ��", listener);
-	// isExit.setButton2("ȡ��", listener);
-	// // ��ʾ�Ի���
+	// // 添加选择按钮并注册监听
+	// isExit.setButton("确定", listener);
+	// isExit.setButton2("取消", listener);
+	// // 显示对话框
 	// isExit.show();
 	// }
 	// return false;
 	// }
 
-	// /** �����Ի��������button����¼� */
+	// /** 监听对话框里面的button点击事件 */
 	// DialogInterface.OnClickListener listener = new
 	// DialogInterface.OnClickListener() {
 	// public void onClick(DialogInterface dialog, int which) {
 	// switch (which) {
-	// case AlertDialog.BUTTON_POSITIVE:// "ȷ��"��ť�˳�����
-	// // ��ն�������
+	// case AlertDialog.BUTTON_POSITIVE:// "确认"按钮退出程序
+	// // 清空订单详情
 	// try {
 	// indentDAO.delAll();
 	// finish();
@@ -141,7 +141,7 @@ public class ShowIndent extends Activity {
 	// e.printStackTrace();
 	// }
 	// break;
-	// case AlertDialog.BUTTON_NEGATIVE:// "ȡ��"�ڶ�����ťȡ���Ի���
+	// case AlertDialog.BUTTON_NEGATIVE:// "取消"第二个按钮取消对话框
 	// break;
 	// default:
 	// break;
@@ -150,16 +150,16 @@ public class ShowIndent extends Activity {
 	// };
 
 	/**
-	 * ȷ�����ť�¼�
+	 * 确定付款按钮事件
 	 */
 	OnClickListener btn_listener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
-			// ����š������š��ܼۡ��µ����ڡ�״̬���û���
+			// （编号、订单号、总价、下单日期、状态、用户）
 			preferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
 
-			// �µ�ʱ��
+			// 下单时间
 			Calendar c = Calendar.getInstance();
 			year = c.get(Calendar.YEAR);
 			month = c.get(Calendar.MONTH) + 1;
@@ -191,7 +191,7 @@ public class ShowIndent extends Activity {
 				detailDAO.addDetail(detail);
 				startActivity(new Intent(ShowIndent.this, ShowDetail.class));
 				ShowIndent.this.finish();
-				MyToast.showToast(ShowIndent.this, "����ɹ���");
+				MyToast.showToast(ShowIndent.this, "付款成功！");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

@@ -15,6 +15,8 @@ import android.graphics.drawable.NinePatchDrawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import ui.R;
+
 /**
  * Բ��ImageView�����������������Ȳ�ͬ����ɫ��ͬ��Բ�α߿�
  * 
@@ -99,16 +101,14 @@ public class RoundImageView extends ImageView
 			drawCircleBorder(canvas, radius + mBorderThickness
 					+ mBorderThickness / 2, mBorderOutsideColor);
 		}
-		else if (mBorderInsideColor != defaultColor
-				&& mBorderOutsideColor == defaultColor)
+		else if (mBorderInsideColor != defaultColor)
 		{// ���廭һ���߿�
 			radius = (defaultWidth < defaultHeight ? defaultWidth
 					: defaultHeight) / 2 - mBorderThickness;
 			drawCircleBorder(canvas, radius + mBorderThickness / 2,
 					mBorderInsideColor);
 		}
-		else if (mBorderInsideColor == defaultColor
-				&& mBorderOutsideColor != defaultColor)
+		else if (mBorderOutsideColor != defaultColor)
 		{// ���廭һ���߿�
 			radius = (defaultWidth < defaultHeight ? defaultWidth
 					: defaultHeight) / 2 - mBorderThickness;

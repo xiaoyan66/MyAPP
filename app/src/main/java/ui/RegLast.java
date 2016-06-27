@@ -43,7 +43,7 @@ public class RegLast extends Activity {
 		setContentView(R.layout.activity_reg_last);
 		ActivityCollector.addActivity(this);
 		userInfoDAO = new UserInfoDAO(RegLast.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
 	}
 
@@ -54,17 +54,17 @@ public class RegLast extends Activity {
 		ActivityCollector.removeActivity(this);
 	}
 
-	// ��ʼ���ؼ�
+	// 初始化控件
 	private void initView() {
 		btnlogin = (Button) this.findViewById(R.id.btnlogin);
 		mylasttel = (TextView) this.findViewById(R.id.mylasttel);
-		// �ӻ�����ȡ���ո�ע��ĵ绰���������
+		// 从缓存中取出刚刚注册的电话号码和密码
 		preferences = getSharedPreferences("Reg", Context.MODE_PRIVATE);
 		telname = preferences.getString("telname", "");
 		pwd = preferences.getString("pwd", "");
 		mylasttel.setText(telname);
 
-		// ��½
+		// 登陆
 		btnlogin.setOnClickListener(listener);
 
 	}
@@ -79,7 +79,7 @@ public class RegLast extends Activity {
 			userInfo.setUpwd(pwd);
 			userInfo.setUimage(0);
 
-			Toast.makeText(RegLast.this, "�û�����" + telname + "���룺" + pwd, 1)
+			Toast.makeText(RegLast.this, "用户名：" + telname + "密码：" + pwd, 1)
 					.show();
 
 			userInfoDAO.AddUserInfo(userInfo);

@@ -18,7 +18,7 @@ import entity.Car;
 import util.ActivityCollector;
 
 /**
- * ����Ʒ�Ʊ�Ų�ѯ���г�ϵ
+ * 根据品牌编号查询所有车系
  * 
  * @author Administrator
  * 
@@ -34,20 +34,6 @@ public class ShowSerial extends Activity {
 	private Car car;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		setContentView(R.layout.activity_show_serial);
-		ActivityCollector.addActivity(this);
-		serialDAO = new SerialDAO(ShowSerial.this);
-		carDAO = new CarDAO(ShowSerial.this);
-		// ��ʼ���ؼ�
-		initView();
-		// ��������
-		initData();
-	}
-
-	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
@@ -55,7 +41,7 @@ public class ShowSerial extends Activity {
 	}
 
 	/**
-	 * ��������
+	 * 加载数据
 	 */
 	private void initData() {
 		Intent intent = getIntent();
@@ -66,7 +52,7 @@ public class ShowSerial extends Activity {
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mElSerials = (ExpandableListView) this.findViewById(R.id.el_serials);
@@ -76,19 +62,19 @@ public class ShowSerial extends Activity {
 	}
 
 	/**
-	 * ����ListView�������¼�
+	 * 伸缩ListView子项点击事件
 	 */
 	OnChildClickListener el_listener = new OnChildClickListener() {
 
 		@Override
 		public boolean onChildClick(ExpandableListView arg0, View arg1,
-				int arg2, int arg3, long arg4) {
+									int arg2, int arg3, long arg4) {
 			int id = (Integer) arg1.findViewById(R.id.tv_cname).getTag();
 
-			// Toast.makeText(ShowSerial.this, "�������ǣ�" + id, 1).show();
+			// Toast.makeText(ShowSerial.this, "你点击的是：" + id, 1).show();
 			car = carDAO.getAllCarById(id);
 
-			// ��������ţ���ϵ�����ƣ�ͼƬ�����𡢷������������䡢�ṹ��ԭ�ۡ��ּۣ�
+			// 车辆（编号，车系，名称，图片，级别、发动机、变速箱、结构、原价、现价）
 			int cid = car.get_id();
 			int sid = car.getSid();
 			String cname = car.getCname();

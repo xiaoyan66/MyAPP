@@ -27,11 +27,6 @@ public class UpdatePwd extends Activity {
 	private EditText mEtOldPwd;
 	private EditText mEtNewPwd;
 	private EditText mEtAgainNewPwd;
-
-	private Button mBtnOk;
-
-	private SharedPreferences preferences;
-	private UserInfo userInfo;
 	private UserInfoDAO userInfoDAO;
 
 	@Override
@@ -60,7 +55,7 @@ public class UpdatePwd extends Activity {
 		mEtNewPwd = (EditText) this.findViewById(R.id.edt_new_pw);
 		mEtAgainNewPwd = (EditText) this.findViewById(R.id.edt_again_new_pw);
 
-		mBtnOk = (Button) this.findViewById(R.id.btn_ok);
+		Button mBtnOk = (Button) this.findViewById(R.id.btn_ok);
 
 		mBtnOk.setOnClickListener(listener);
 	}
@@ -69,7 +64,7 @@ public class UpdatePwd extends Activity {
 
 		@Override
 		public void onClick(View v) {
-			preferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
+			SharedPreferences preferences = getSharedPreferences("Login", Context.MODE_PRIVATE);
 			String uname = preferences.getString("uname", "");
 
 			String oldpwd = mEtOldPwd.getText().toString().trim();
@@ -77,39 +72,39 @@ public class UpdatePwd extends Activity {
 			String againnewpwd = mEtAgainNewPwd.getText().toString().trim();
 
 			if (TextUtils.isEmpty(oldpwd)) {
-				MyToast.showToast(UpdatePwd.this, "����������룡");
+				MyToast.showToast(UpdatePwd.this, "请输入旧密码！");
 				return;
 			}
 
-			userInfo = userInfoDAO.getUserInfoByNameAndPwd(uname, oldpwd);
+			UserInfo userInfo = userInfoDAO.getUserInfoByNameAndPwd(uname, oldpwd);
 
 			if (userInfo == null) {
-				MyToast.showToast(UpdatePwd.this, "�������������������룡");
+				MyToast.showToast(UpdatePwd.this, "旧密码有误，请重新输入！");
 				return;
 			}
 
 			if (TextUtils.isEmpty(newpwd)) {
-				MyToast.showToast(UpdatePwd.this, "�����������룡");
+				MyToast.showToast(UpdatePwd.this, "请输入新密码！");
 				return;
 			}
 
 			if (TextUtils.isEmpty(againnewpwd)) {
-				MyToast.showToast(UpdatePwd.this, "���ٴ����������룡");
+				MyToast.showToast(UpdatePwd.this, "请再次输入新密码！");
 				return;
 			}
 
 			if (!newpwd.equals(againnewpwd)) {
-				MyToast.showToast(UpdatePwd.this, "�����벻һ�£����������룡");
+				MyToast.showToast(UpdatePwd.this, "新密码不一致，请重新输入！");
 				return;
 			}
 
 			userInfo.setUpwd(againnewpwd);
 			try {
 				userInfoDAO.updateUserInfoPwd(userInfo);
-				MyToast.showToast(UpdatePwd.this, "���������ѱ���������µ�¼��");
+				MyToast.showToast(UpdatePwd.this, "您的密码已变更，请重新登录！");
 				startActivity(new Intent(UpdatePwd.this, Login.class));
 			} catch (Exception e) {
-				MyToast.showToast(UpdatePwd.this, "�޸�ʧ�ܣ�");
+				MyToast.showToast(UpdatePwd.this, "修改失败！");
 			}
 
 		}

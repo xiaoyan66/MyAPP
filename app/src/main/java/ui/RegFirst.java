@@ -1,6 +1,7 @@
 package ui;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
 import android.content.Context;
@@ -28,12 +29,12 @@ import util.MyToast;
  *
  */
 public class RegFirst extends Activity {
-	private Button back;// ���ذ�ť
-	private Button regbtn;// �ύ��ť
-	private CheckBox chk_agree;// ����Ƿ��Ķ�������
-	private EditText address;// ���ڵ�
-	private TextView myupdateaddress;// �޸ĵ绰���ڵ�
-	private EditText regtel;// ע����ֻ���
+	private Button back;// 返回按钮
+	private Button regbtn;// 提交按钮
+	private CheckBox chk_agree;// 检查是否阅读了条款
+	private EditText address;// 所在地
+	private TextView myupdateaddress;// 修改电话所在地
+	private EditText regtel;// 注册的手机号
 
 	private boolean flag = false;
 
@@ -45,7 +46,7 @@ public class RegFirst extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_reg_first);
 		ActivityCollector.addActivity(this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
 	}
 
@@ -63,23 +64,23 @@ public class RegFirst extends Activity {
 		address = (EditText) this.findViewById(R.id.regaddress);
 		myupdateaddress = (TextView) this.findViewById(R.id.myupdateaddress);
 		regtel = (EditText) this.findViewById(R.id.regtel);
-		// �ڰ�ť�ϼ��¼�
+		// 在按钮上加事件
 		back.setOnClickListener(listener);
 		regbtn.setOnClickListener(listener);
-		// ���޸ĵ����ϼ��¼�
+		// 在修改地域上加事件
 		myupdateaddress.setOnClickListener(listener);
-		// ������������ֻ�����󣬼��¼�
+		// 当你输入完成手机号码后，加事件
 		// regtel.addTextChangedListener(mychange);
 
 	}
 
-	// �ڰ�ť�ϼ��¼�
+	// 在按钮上加事件
 	OnClickListener listener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			if (v.getId() == R.id.back) {
-				// ����
+				// 返回
 				startActivity(new Intent(RegFirst.this, Login.class));
 				overridePendingTransition(R.anim.backleft, R.anim.backright);
 				RegFirst.this.finish();
@@ -87,14 +88,14 @@ public class RegFirst extends Activity {
 			if (v.getId() == R.id.regbtn) {
 				String telname = regtel.getText().toString();
 				if (telname.length() == 0) {
-					MyToast.showAlert(RegFirst.this, "������ʾ", "�˺Ų���Ϊ�գ�");
+					MyToast.showAlert(RegFirst.this, "错误提示", "账号不能为空！");
 				} else if (!chk_agree.isChecked()) {
-					MyToast.showAlert(RegFirst.this, "������ʾ", "С�ӣ���ͬ�������ǲ��еģ�");
+					MyToast.showAlert(RegFirst.this, "错误提示", "小子，不同意条款是不行的！");
 				} else {
 
 					UserInfo userInfo = new UserInfo();
 					userInfo.setUname(telname);
-					// �ŵ�������ȥ
+					// 放到缓存中去
 					preferences = getSharedPreferences("Reg",
 							Context.MODE_PRIVATE);
 
@@ -102,49 +103,49 @@ public class RegFirst extends Activity {
 					editor.putString("telname", telname);
 					editor.commit();
 
-					// ��һ��ע��ҳ��
+					// 下一个注册页面
 					startActivity(new Intent(RegFirst.this, RegNext.class));
 					overridePendingTransition(R.anim.left, R.anim.right);
 					RegFirst.this.finish();
 				}
 			}
 			if (v.getId() == R.id.myupdateaddress) {
-				// �޸ĵ���
+				// 修改地域
 				updateMyAddress();
 			}
 		}
 	};
 
-	/******************************* �޸ĵ����¼� **************************/
+	/******************************* 修改地域事件 **************************/
 	private void updateMyAddress() {
 		showDialog(1);
 	}
 
 	protected Dialog onCreateDialog(int id, Bundle args) {
-		final Builder b = new Builder(RegFirst.this);
-		b.setTitle("��ѡ�����ڵ�");
-		// ��һ��������ѡ������
-		// �ڶ���������Ĭ�ϵ�ѡ����
-		// ������������ѡ�����¼�
-		b.setSingleChoiceItems(new String[] { "+86�й���½", "+853�й�����",
-				"+852�й����", "+886�й�̨��" }, 0,
+		final Builder b = new AlertDialog.Builder(RegFirst.this);
+		b.setTitle("请选择所在地");
+		// 第一个参数：选择内容
+		// 第二个参数：默认的选择项
+		// 第三个参数：选择后的事件
+		b.setSingleChoiceItems(new String[] { "+86中国大陆", "+853中国澳门",
+						"+852中国香港", "+886中国台湾" }, 0,
 				new DialogInterface.OnClickListener() {
 
 					@Override
 					public void onClick(DialogInterface arg0, int arg1) {
 						switch (arg1) {
-						case 0:
-							address.setText("+86�й���½");
-							break;
-						case 1:
-							address.setText("+853�й�����");
-							break;
-						case 2:
-							address.setText("+852�й����");
-							break;
-						case 3:
-							address.setText("+886�й�̨��");
-							break;
+							case 0:
+								address.setText("+86中国大陆");
+								break;
+							case 1:
+								address.setText("+853中国澳门");
+								break;
+							case 2:
+								address.setText("+852中国香港");
+								break;
+							case 3:
+								address.setText("+886中国台湾");
+								break;
 						}
 						dismissDialog(1);
 					}

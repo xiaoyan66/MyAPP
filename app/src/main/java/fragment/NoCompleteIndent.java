@@ -12,6 +12,8 @@ import android.widget.ListView;
 import com.example.administrator.ui.IndentAdapter;
 import com.example.administrator.ui.IndentDAO;
 
+import ui.R;
+
 
 public class NoCompleteIndent extends Fragment {
 	private View view;
@@ -24,15 +26,15 @@ public class NoCompleteIndent extends Fragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.no_complete_fm, null);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 		return view;
 	}
 
 	/**
-	 * ��������
+	 * 加载数据
 	 */
 	private void initData() {
 		indentDAO = new IndentDAO(getActivity());
@@ -42,7 +44,7 @@ public class NoCompleteIndent extends Fragment {
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mLvIndent = (ListView) view.findViewById(R.id.lv_indents_2);

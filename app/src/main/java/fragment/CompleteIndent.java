@@ -16,11 +16,12 @@ import android.widget.ListView;
 import com.example.administrator.ui.DetailAdapter;
 import com.example.administrator.ui.DetailDAO;
 
+import ui.R;
 import ui.WaitIncomeGoods;
 
 
 /**
- * ��ѯ�����Ѹ���Ķ���
+ * 查询所有已付款的订单
  * 
  * @author YinWenBing
  * 
@@ -35,19 +36,19 @@ public class CompleteIndent extends Fragment
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState)
+							 Bundle savedInstanceState)
 	{
 		view = inflater.inflate(R.layout.complete_fm, null);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 
 		return view;
 	}
 
 	/**
-	 * ��������
+	 * 加载数据
 	 */
 	private void initData()
 	{
@@ -58,7 +59,7 @@ public class CompleteIndent extends Fragment
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView()
 	{
@@ -72,12 +73,12 @@ public class CompleteIndent extends Fragment
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3)
+								long arg3)
 		{
 			Map map = (Map) ar.get(arg2);
-			// ������
+			// 订单号
 			String inumber = map.get("inumber").toString();
-			// ���ݶ����Ų�ѯ������
+			// 根据订单号查询订单表
 			Intent intent = new Intent(getActivity(), WaitIncomeGoods.class);
 			intent.putExtra("inumber", inumber);
 			startActivity(intent);

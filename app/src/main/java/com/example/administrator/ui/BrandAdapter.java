@@ -11,6 +11,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import ui.R;
+
 public class BrandAdapter extends BaseAdapter {
 	private Context context;
 	private List ar;

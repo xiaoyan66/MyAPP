@@ -35,31 +35,31 @@ import util.ActivityCollector;
  * 
  */
 public class Login extends Activity {
-	// �ؼ�
-	private EditText mEdtUname;// �˺�
-	private EditText mEdtUpwd;// ����
+	// 控件
+	private EditText mEdtUname;// 账号
+	private EditText mEdtUpwd;// 密码
 
-	private CheckBox mCbShowPwd;// ��ʾ����
-	private Button mBtnLogin;// ��¼
-	private Button mBtnRegister;// ע��
+	private CheckBox mCbShowPwd;// 显示密码
+	private Button mBtnLogin;// 登录
+	private Button mBtnRegister;// 注册
 
-	// ʵ��㡢ҵ���߼���
+	// 实体层、业务逻辑层
 	private UserInfo userInfo;
 	private UserInfoDAO userInfoDAO;
 
-	// ����
+	// 变量
 	private String uname;
 	private String upwd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ���ر�����
+		// 隐藏标题栏
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_login);
 		ActivityCollector.addActivity(this);
 		userInfoDAO = new UserInfoDAO(Login.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
 	}
 
@@ -73,23 +73,23 @@ public class Login extends Activity {
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			// ������ʾ����
+			// 创建提示窗口
 			AlertDialog isExit = new AlertDialog.Builder(Login.this).create();
-			// ���ô��ڱ���
-			isExit.setTitle("ϵͳ��ʾ");
-			// ���ô�������
-			isExit.setMessage("��ȷ���˳���");
-			// ��Ӱ�ť
-			isExit.setButton("ȷ��", isExitlistener);
-			isExit.setButton2("ȡ��", isExitlistener);
-			// ��ʾ����
+			// 设置窗口标题
+			isExit.setTitle("系统提示");
+			// 设置窗口内容
+			isExit.setMessage("你确定退出吗？");
+			// 添加按钮
+			isExit.setButton("确定", isExitlistener);
+			isExit.setButton2("取消", isExitlistener);
+			// 显示窗口
 			isExit.show();
 		}
 		return false;
 	}
 
 	/**
-	 * ������ť�¼�
+	 * 弹窗按钮事件
 	 */
 
 	DialogInterface.OnClickListener isExitlistener = new DialogInterface.OnClickListener() {
@@ -97,22 +97,22 @@ public class Login extends Activity {
 		@Override
 		public void onClick(DialogInterface arg0, int arg1) {
 			switch (arg1) {
-			case AlertDialog.BUTTON_POSITIVE:
-				// ȷ��
-				ActivityCollector.finishAll();
-				break;
-			case AlertDialog.BUTTON_NEGATIVE:
+				case AlertDialog.BUTTON_POSITIVE:
+					// 确定
+					ActivityCollector.finishAll();
+					break;
+				case AlertDialog.BUTTON_NEGATIVE:
 
-				break;
-			default:
-				break;
+					break;
+				default:
+					break;
 			}
 
 		}
 	};
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mEdtUname = (EditText) this.findViewById(R.id.et_uname);
@@ -122,80 +122,80 @@ public class Login extends Activity {
 		mBtnLogin = (Button) this.findViewById(R.id.btn_login);
 		mBtnRegister = (Button) this.findViewById(R.id.btn_register);
 
-		// ���¼�
+		// 加事件
 		mBtnLogin.setOnClickListener(listener);
 		mBtnRegister.setOnClickListener(listener);
 		mCbShowPwd.setOnCheckedChangeListener(cb_listener);
 	}
 
 	/**
-	 * ��ʾ����
+	 * 显示密码
 	 */
 	OnCheckedChangeListener cb_listener = new OnCheckedChangeListener() {
 
 		@Override
 		public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
 			if (mCbShowPwd.isChecked()) {
-				// ��ʾ����
+				// 显示密码
 				mEdtUpwd.setTransformationMethod(HideReturnsTransformationMethod
 						.getInstance());
 			} else {
-				// ����ʾ
+				// 不显示
 				mEdtUpwd.setTransformationMethod(PasswordTransformationMethod
 						.getInstance());
 			}
 		}
 	};
 	/**
-	 * ��ť�����¼�
+	 * 按钮监听事件
 	 */
 	OnClickListener listener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
-			case R.id.btn_login:
-				// ��ȡ�û������ֵ
-				uname = mEdtUname.getText().toString();
-				upwd = mEdtUpwd.getText().toString();
+				case R.id.btn_login:
+					// 获取用户输入的值
+					uname = mEdtUname.getText().toString();
+					upwd = mEdtUpwd.getText().toString();
 
-				userInfo = userInfoDAO.getUserInfoByNameAndPwd(uname, upwd);
+					userInfo = userInfoDAO.getUserInfoByNameAndPwd(uname, upwd);
 
-				if (!TextUtils.isEmpty(uname)) {
-					if (!TextUtils.isEmpty(upwd)) {
-						if (userInfo != null) {
+					if (!TextUtils.isEmpty(uname)) {
+						if (!TextUtils.isEmpty(upwd)) {
+							if (userInfo != null) {
 
-							SharedPreferences preferences = getSharedPreferences(
-									"Login", Context.MODE_PRIVATE);
-							Editor editor = preferences.edit();
-							editor.putBoolean("login", true);
-							editor.putString("uname", uname);
-							editor.putInt("uid", userInfo.get_id());
-							editor.putInt("uimage", userInfo.getUimage());
-							editor.commit();
-							startActivity(new Intent(Login.this, Main.class));
-							Toast.makeText(Login.this, "��¼�ɹ���",Toast.LENGTH_SHORT).show();
-							Login.this.finish();
+								SharedPreferences preferences = getSharedPreferences(
+										"Login", Context.MODE_PRIVATE);
+								Editor editor = preferences.edit();
+								editor.putBoolean("login", true);
+								editor.putString("uname", uname);
+								editor.putInt("uid", userInfo.get_id());
+								editor.putInt("uimage", userInfo.getUimage());
+								editor.commit();
+								startActivity(new Intent(Login.this, Main.class));
+								Toast.makeText(Login.this, "登录成功！", Toast.LENGTH_SHORT).show();
+								Login.this.finish();
+							} else {
+								Toast.makeText(Login.this, "账号或密码错误，请重新输入！",Toast.LENGTH_SHORT)
+										.show();
+							}
 						} else {
-							Toast.makeText(Login.this, "�˺Ż�����������������룡",Toast.LENGTH_SHORT)
-									.show();
+							Toast.makeText(Login.this, "请输入密码！", Toast.LENGTH_SHORT).show();
 						}
 					} else {
-						Toast.makeText(Login.this, "���������룡", Toast.LENGTH_SHORT).show();
+						Toast.makeText(Login.this, "请输入账号！", Toast.LENGTH_SHORT).show();
 					}
-				} else {
-					Toast.makeText(Login.this, "�������˺ţ�", Toast.LENGTH_SHORT).show();
-				}
 
-				break;
-			case R.id.btn_register:
-				// ע��
-				startActivity(new Intent(Login.this, RegFirst.class));
-				overridePendingTransition(R.anim.left, R.anim.right);
-				Login.this.finish();
-				break;
-			default:
-				break;
+					break;
+				case R.id.btn_register:
+					// 注册
+					startActivity(new Intent(Login.this, RegFirst.class));
+					overridePendingTransition(R.anim.left, R.anim.right);
+					Login.this.finish();
+					break;
+				default:
+					break;
 			}
 		}
 	};

@@ -30,7 +30,7 @@ public class RegPswSet extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_reg_psw_set);
 		ActivityCollector.addActivity(this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
 	}
 
@@ -40,13 +40,13 @@ public class RegPswSet extends Activity {
 		super.onDestroy();
 		ActivityCollector.removeActivity(this);
 	}
-	// ��ʼ���ؼ�
+	// 初始化控件
 	private void initView() {
 		btnpsw = (Button) this.findViewById(R.id.regpsw);
 		myback = (Button) this.findViewById(R.id.myback);
 		pw1 = (EditText) this.findViewById(R.id.pw1);
 		pw2 = (EditText) this.findViewById(R.id.pw2);
-		// ���¼�
+		// 加事件
 		btnpsw.setOnClickListener(listener);
 		myback.setOnClickListener(listener);
 
@@ -60,9 +60,9 @@ public class RegPswSet extends Activity {
 				String p1 = pw1.getText().toString();
 				String p2 = pw2.getText().toString();
 				if (p1.length() == 0 || p2.length() == 0) {
-					MyToast.showAlert(RegPswSet.this, "������ʾ", "�Բ����������ò���Ϊ�գ�");
+					MyToast.showAlert(RegPswSet.this, "错误提示", "对不起，密码设置不能为空！");
 				} else if (!p1.equalsIgnoreCase(p2)) {
-					MyToast.showAlert(RegPswSet.this, "������ʾ", "�Բ����������벻һ�£�");
+					MyToast.showAlert(RegPswSet.this, "错误提示", "对不起，两次密码不一致！");
 				} else {
 					preferences = getSharedPreferences("Reg",
 							Context.MODE_PRIVATE);

@@ -42,10 +42,11 @@ public class GuidePage extends Activity {
 	private ImageView[] mImages;
 	private ImageView mImage;
 
+
 	/**
-	 * AtomicInteger: һ���ṩԭ�Ӳ�����Integer���ࡣ
-	 * ��Java�����У�++i��i++�����������̰߳�ȫ�ģ���ʹ�õ�ʱ�򣬲��ɱ���Ļ��õ�synchronized�ؼ��֡�
-	 * ��AtomicInteger��ͨ��һ���̰߳�ȫ�ļӼ������ӿڡ�
+	 * AtomicInteger: 一个提供原子操作的Integer的类。
+	 * 在Java语言中，++i和i++操作并不是线程安全的，在使用的时候，不可避免的会用到synchronized关键字。
+	 * 而AtomicInteger则通过一种线程安全的加减操作接口。
 	 */
 	private AtomicInteger atomicInteger = new AtomicInteger();
 
@@ -67,11 +68,11 @@ public class GuidePage extends Activity {
 	}
 
 	private void initView() {
-		// ��һ������ʼ��ViewPager�ؼ�
+		// 第一步：初始化ViewPager控件
 		mGuidePage = (ViewPager) this.findViewById(R.id.guidepage);
 
 		ViewGroup viewGroup = (ViewGroup) this.findViewById(R.id.rounddot);
-		// �ڶ���:��������ҳ
+		// 第二步:创建引导页
 		ar = new ArrayList<View>();
 		View v0 = getLayoutInflater().inflate(R.layout.page_item, null);
 		LinearLayout l0 = (LinearLayout) v0.findViewById(R.id.page_item);
@@ -91,26 +92,26 @@ public class GuidePage extends Activity {
 		View v3 = getLayoutInflater().inflate(R.layout.page_item, null);
 		LinearLayout l3 = (LinearLayout) v3.findViewById(R.id.page_item);
 		l3.setBackgroundResource(R.drawable.guide_page_4);
-		// ��ʼ�����������鰴ť��
+		// 初始化“立即体验按钮”
 		mBtnJoin = (Button) v3.findViewById(R.id.btn_join);
-		// ���ð�ť�ɼ�
+		// 设置按钮可见
 		mBtnJoin.setVisibility(View.VISIBLE);
-		// ��ť����¼�
+		// 按钮点击事件
 		mBtnJoin.setOnClickListener(btn_listener);
 		ar.add(l3);
 
-		// ��������ʵ����������
+		// 第三步：实例化适配器
 		adapter = new GuidePageAdapter(GuidePage.this, ar);
-		// ��ҳ��󶨵�ViewPager����
+		// 将页面绑定到ViewPager上面
 		mGuidePage.setAdapter(adapter);
 
-		// ��ViewGroup���ͼƬ����
+		// 给ViewGroup添加图片数组
 		mImages = new ImageView[ar.size()];
 		for (int i = 0; i < ar.size(); i++) {
 			mImage = new ImageView(GuidePage.this);
-			// ����ͼƬ���
+			// 设置图片宽高
 			LayoutParams layoutParams = new LayoutParams(9, 9);
-			// �������ܱ߾�
+			// 设置四周边距
 			layoutParams.setMargins(10, 5, 10, 5);
 			mImage.setLayoutParams(layoutParams);
 
@@ -124,12 +125,12 @@ public class GuidePage extends Activity {
 			viewGroup.addView(mImages[i]);
 		}
 
-		// ViewPagerҳ��仯ʱ�¼�
+		// ViewPager页面变化时事件
 		mGuidePage.setOnPageChangeListener(gp_listener);
 
-		// ��ʱ��
+		// 定时器
 		Timer timer = new Timer();
-		// ������ʵ������ʱ���������
+		// 创建并实例化定时器任务对象
 		TimerTask task = new TimerTask() {
 
 			@Override
@@ -138,13 +139,13 @@ public class GuidePage extends Activity {
 			}
 		};
 
-		// ����1������ ����2�����ִ��һ�� ����3��ִ������
+		// 参数1：任务 参数2：多久执行一次 参数3：执行周期
 		timer.schedule(task, 2000, 2000);
 	}
 
 	Handler handler = new Handler() {
 		public void handleMessage(android.os.Message msg) {
-			// ��ʾ�ڼ���
+			// 显示第几项
 			mGuidePage.setCurrentItem(msg.what);
 			if (atomicInteger.get() == ar.size()) {
 				atomicInteger.set(0);
@@ -183,13 +184,13 @@ public class GuidePage extends Activity {
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
-			case R.id.btn_join:
-				startActivity(new Intent(GuidePage.this, Main.class));
-				GuidePage.this.finish();
-				break;
+				case R.id.btn_join:
+					startActivity(new Intent(GuidePage.this, Main.class));
+					GuidePage.this.finish();
+					break;
 
-			default:
-				break;
+				default:
+					break;
 			}
 
 		}

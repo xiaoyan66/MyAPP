@@ -19,7 +19,7 @@ import util.ActivityCollector;
 
 
 /**
- * ��ʾ����
+ * 显示汽车
  * @author Administrator
  *
  */
@@ -38,9 +38,9 @@ public class ShowCars extends Activity {
 		setContentView(R.layout.activity_show_cars);
 		ActivityCollector.addActivity(this);
 		carDAO = new CarDAO(ShowCars.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 	}
 
@@ -67,9 +67,9 @@ public class ShowCars extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
+								long arg3) {
 			Map map = (Map) ar.get(arg2);
-			// ��������ţ���ϵ�����ƣ�ͼƬ�����𡢷������������䡢�ṹ��ԭ�ۡ��ּۣ�
+			// 车辆（编号，车系，名称，图片，级别、发动机、变速箱、结构、原价、现价）
 			int cid = Integer.parseInt(map.get("cid").toString());
 			int sid = Integer.parseInt(map.get("sid").toString());
 			String cname = map.get("cname").toString();

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import ui.R;
+
 
 public class DetailAdapter extends BaseAdapter {
 	private Context context;

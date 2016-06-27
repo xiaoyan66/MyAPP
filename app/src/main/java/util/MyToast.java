@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.widget.Toast;
 
+import ui.R;
+
 public class MyToast
 {
 

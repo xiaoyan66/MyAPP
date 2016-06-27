@@ -35,17 +35,17 @@ public class ShowParts extends Activity
 	private TextView mTvOldPrice;
 	private TextView mTvNewPrice;
 
-	private Button mBtnCollect;// �����ղ�
-	private Button mBtnBuy;// ���빺�ﳵ
+	private Button mBtnCollect;// 加入收藏
+	private Button mBtnBuy;// 加入购物车
 
 	private SharedPreferences preferences;
 
-	// ���ﳵ
+	// 购物车
 	private ShoppingCart shoppingCart;
 	private ShoppingCartDAO shoppingCartDAO;
 	private int pid;
 
-	// �ղر�
+	// 收藏表
 	private Collect collect;
 	private CollectDAO collectDAO;
 
@@ -62,9 +62,9 @@ public class ShowParts extends Activity
 		ActivityCollector.addActivity(this);
 		shoppingCartDAO = new ShoppingCartDAO(ShowParts.this);
 		collectDAO = new CollectDAO(ShowParts.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 	}
 
@@ -77,7 +77,7 @@ public class ShowParts extends Activity
 	}
 
 	/**
-	 * �������ݷ���
+	 * 加载数据方法
 	 */
 	private void initData()
 	{
@@ -105,7 +105,7 @@ public class ShowParts extends Activity
 
 	private void initView()
 	{
-		// ͼƬ�����ܡ�ԭ�ۡ��ּۡ����ơ�Ʒ�ơ����
+		// 图片、介绍、原价、现价、名称、品牌、库存
 		mIvPimage = (ImageView) this.findViewById(R.id.iv_pimage);
 		mTvPreferral = (TextView) this.findViewById(R.id.tv_preferral);
 		mTvPoldPrice = (TextView) this.findViewById(R.id.tv_poldprice);
@@ -116,16 +116,16 @@ public class ShowParts extends Activity
 		mTvOldPrice = (TextView) this.findViewById(R.id.tv_oldprice);
 		mTvNewPrice = (TextView) this.findViewById(R.id.tv_newprice);
 
-		mBtnCollect = (Button) this.findViewById(R.id.btn_collect);// �����ղذ�ť
-		mBtnBuy = (Button) this.findViewById(R.id.btn_buy);// ���빺�ﳵ��ť
-		// ����ť���ü����¼�
+		mBtnCollect = (Button) this.findViewById(R.id.btn_collect);// 加入收藏按钮
+		mBtnBuy = (Button) this.findViewById(R.id.btn_buy);// 加入购物车按钮
+		// 给按钮设置监听事件
 		mBtnCollect.setOnClickListener(btn_listener);
 		mBtnBuy.setOnClickListener(btn_listener);
 
 	}
 
 	/**
-	 * ��ť�����¼�
+	 * 按钮监听事件
 	 */
 	OnClickListener btn_listener = new OnClickListener()
 	{
@@ -135,101 +135,101 @@ public class ShowParts extends Activity
 		{
 			switch (v.getId())
 			{
-			case R.id.btn_collect:
-				// �ж��û��Ƿ��¼
-				preferences = getSharedPreferences("Login",
-						Context.MODE_PRIVATE);// ����SharedPreferences����
-				// �ӻ�����ȡֵ
-				boolean login = preferences.getBoolean("login", false);
-				if (login == true)
-				{
-					// �жϸ���Ʒ�Ƿ��Ѿ��ղ�
-					collect = collectDAO.getOneCollect(pid, 2);
-					if (collect != null)
+				case R.id.btn_collect:
+					// 判断用户是否登录
+					preferences = getSharedPreferences("Login",
+							Context.MODE_PRIVATE);// 创建SharedPreferences对象
+					// 从缓存中取值
+					boolean login = preferences.getBoolean("login", false);
+					if (login == true)
 					{
-						MyToast.showToast(ShowParts.this, "���Ѿ��ղع�����Ʒ");
-						return;
+						// 判断该商品是否已经收藏
+						collect = collectDAO.getOneCollect(pid, 2);
+						if (collect != null)
+						{
+							MyToast.showToast(ShowParts.this, "你已经收藏过该商品");
+							return;
+						}
+						int uid = preferences.getInt("uid", 0);
+
+						collect = new Collect();
+
+						collect.setUid(uid);
+						collect.setGid(pid);
+						collect.setGname(pname);
+						collect.setGprice(pnewprice);
+						collect.setGsource(2);
+						collect.setGimage(pimage);
+
+						try
+						{
+							collectDAO.addCollect(collect);
+							Toast.makeText(ShowParts.this, "收藏成功！", Toast.LENGTH_SHORT).show();
+						}
+						catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+
 					}
-					int uid = preferences.getInt("uid", 0);
-
-					collect = new Collect();
-
-					collect.setUid(uid);
-					collect.setGid(pid);
-					collect.setGname(pname);
-					collect.setGprice(pnewprice);
-					collect.setGsource(2);
-					collect.setGimage(pimage);
-
-					try
+					else
 					{
-						collectDAO.addCollect(collect);
-						Toast.makeText(ShowParts.this, "�ղسɹ���", 1).show();
-					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
-					}
-
-				}
-				else
-				{
-					Toast.makeText(ShowParts.this, "���ȵ�¼", 1).show();
-				}
-
-				break;
-			case R.id.btn_buy:
-				preferences = getSharedPreferences("Login",
-						Context.MODE_PRIVATE);// ����SharedPreferences����
-				// �ӻ�����ȡֵ
-				boolean login2 = preferences.getBoolean("login", false);
-				if (login2 == true)
-				{
-					// �жϸ���Ʒ�Ƿ��Ѿ����빺�ﳵ���ǡ����޸�����
-					shoppingCart = shoppingCartDAO.getOneShoppingCart(pid, 2);
-					if (shoppingCart != null)
-					{
-						// �޸�����
-						int count = shoppingCart.getGcount();
-						shoppingCart.setGcount(count + 1);
-						shoppingCartDAO.updateShoppingcart(shoppingCart);
-						Toast.makeText(ShowParts.this, "�ɹ����빺�복��", 1).show();
-						return;
+						Toast.makeText(ShowParts.this, "请先登录", Toast.LENGTH_SHORT).show();
 					}
 
-					// ���ﳵ�����һ������(�û�����ǰ��Ʒ��š���������Դ���Ƿ���)
-					// �û�
-					int uid = preferences.getInt("uid", 0);
-					// ��ǰ��Ʒ���cid
-					// ����Ĭ��Ϊ1
-					// ��ԴĬ��Ϊ1
-					// �Ƿ���Ĭ��Ϊ0
-
-					shoppingCart = new ShoppingCart();
-					shoppingCart.setUid(uid);
-					shoppingCart.setGid(pid);
-					shoppingCart.setGcount(1);
-					shoppingCart.setGsource(2);
-					shoppingCart.setGbuy(0);
-
-					try
+					break;
+				case R.id.btn_buy:
+					preferences = getSharedPreferences("Login",
+							Context.MODE_PRIVATE);// 创建SharedPreferences对象
+					// 从缓存中取值
+					boolean login2 = preferences.getBoolean("login", false);
+					if (login2 == true)
 					{
-						shoppingCartDAO.addShoppingCart(shoppingCart);
-						Toast.makeText(ShowParts.this, "�ɹ����빺�복��", 1).show();
-					}
-					catch (Exception e)
-					{
-						e.printStackTrace();
-					}
+						// 判断该商品是否已经加入购物车：是——修改数量
+						shoppingCart = shoppingCartDAO.getOneShoppingCart(pid, 2);
+						if (shoppingCart != null)
+						{
+							// 修改数量
+							int count = shoppingCart.getGcount();
+							shoppingCart.setGcount(count + 1);
+							shoppingCartDAO.updateShoppingcart(shoppingCart);
+							Toast.makeText(ShowParts.this, "成功加入购入车！", Toast.LENGTH_SHORT).show();
+							return;
+						}
 
-				}
-				else
-				{
-					Toast.makeText(ShowParts.this, "���ȵ�¼", 1).show();
-				}
-				break;
-			default:
-				break;
+						// 向购物车中添加一条数据(用户、当前商品编号、数量、来源，是否购买)
+						// 用户
+						int uid = preferences.getInt("uid", 0);
+						// 当前商品编号cid
+						// 数量默认为1
+						// 来源默认为1
+						// 是否购买默认为0
+
+						shoppingCart = new ShoppingCart();
+						shoppingCart.setUid(uid);
+						shoppingCart.setGid(pid);
+						shoppingCart.setGcount(1);
+						shoppingCart.setGsource(2);
+						shoppingCart.setGbuy(0);
+
+						try
+						{
+							shoppingCartDAO.addShoppingCart(shoppingCart);
+							Toast.makeText(ShowParts.this, "成功加入购入车！", Toast.LENGTH_SHORT).show();
+						}
+						catch (Exception e)
+						{
+							e.printStackTrace();
+						}
+
+					}
+					else
+					{
+						Toast.makeText(ShowParts.this, "请先登录", Toast.LENGTH_SHORT).show();
+					}
+					break;
+				default:
+					break;
 			}
 
 		}

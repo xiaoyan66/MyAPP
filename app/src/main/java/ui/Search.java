@@ -17,15 +17,15 @@ import com.example.administrator.ui.BrandDAO;
 import util.ActivityCollector;
 
 /**
- * 
- * ģ����ѯ
- * 
- * @author YinWenBing Create at 2016-3-13 ����23:33
- * 
+ *
+ * 模糊查询
+ *
+ * @author xy Create at 2016-6-25 晚上23:33
+ *
  */
 public class Search extends Activity
 {
-	// �ؼ�
+	// 控件
 	private ImageView mIvBack;
 	private EditText mEtSearch;
 	private ImageView mIvSearch;
@@ -73,17 +73,17 @@ public class Search extends Activity
 		{
 			switch (v.getId())
 			{
-			case R.id.iv_back:
-				Search.this.finish();
-				break;
-			case R.id.iv_search:
-				bname = mEtSearch.getText().toString();
-				ar = brandDAO.getAllBrandByName(bname);
-				brandAdapter = new BrandAdapter(Search.this, ar);
-				mGvBrands.setAdapter(brandAdapter);
-				break;
-			default:
-				break;
+				case R.id.iv_back:
+					Search.this.finish();
+					break;
+				case R.id.iv_search:
+					bname = mEtSearch.getText().toString();
+					ar = brandDAO.getAllBrandByName(bname);
+					brandAdapter = new BrandAdapter(Search.this, ar);
+					mGvBrands.setAdapter(brandAdapter);
+					break;
+				default:
+					break;
 			}
 		}
 	};

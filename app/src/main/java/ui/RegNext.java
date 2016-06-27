@@ -18,19 +18,19 @@ import util.ActivityCollector;
 
 
 /**
- * �û�ע��2
- * @author Administrator
- *
- */
+		* 用户注册2
+		* @author Administrator
+		*
+		*/
 public class RegNext extends Activity {
 	private Button btnyzm;
-	// ���ذ�ť
+	// 返回按钮
 	private Button back;
-	// �õ���ʾ��ʱ��
+	// 得到显示的时间
 	private TextView gettime;
-	// ���ٴβ�����֤�밴ť
+	// 让再次产生验证码按钮
 	private Button btnagaing;
-	// ��֤��
+	// 验证码
 	private EditText mycode;
 
 	private MyCount mycount;
@@ -41,9 +41,9 @@ public class RegNext extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_reg_next);
 		ActivityCollector.addActivity(this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ���������
+		// 产生随机数
 		RanNum();
 	}
 
@@ -53,18 +53,18 @@ public class RegNext extends Activity {
 		super.onDestroy();
 		ActivityCollector.removeActivity(this);
 	}
-	// ��ʼ���ؼ�
+	// 初始化控件
 	private void initView() {
 		btnyzm = (Button) this.findViewById(R.id.btnyzm);
 		back = (Button) this.findViewById(R.id.back);
 		gettime = (TextView) this.findViewById(R.id.gettime);
 		btnagaing = (Button) this.findViewById(R.id.btnagaing);
-		// ��һ��������Ҫ����ʱ��ʱ�� ;�ڶ���������ʱ����
+		// 第一个参数：要倒计时的时间 ;第二个参数：时间间隔
 		mycount = new MyCount(10000, 1000);
 		mycount.start();
 
 		mycode = (EditText) this.findViewById(R.id.mycode);
-		// ���¼�
+		// 加事件
 		btnyzm.setOnClickListener(listener);
 		back.setOnClickListener(listener);
 		btnagaing.setOnClickListener(listener);
@@ -76,7 +76,7 @@ public class RegNext extends Activity {
 		@Override
 		public void onClick(View v) {
 			if (v.getId() == R.id.btnyzm) {
-				// ��һ��ע��ҳ��
+				// 下一个注册页面
 				startActivity(new Intent(RegNext.this, RegPswSet.class));
 				overridePendingTransition(R.anim.left, R.anim.right);
 				RegNext.this.finish();
@@ -96,15 +96,15 @@ public class RegNext extends Activity {
 		}
 	};
 
-	/*********************** ʹ��һ���ڲ��ļ�ʱ������ *****************************/
+	/*********************** 使用一个内部的计时器对象 *****************************/
 	public class MyCount extends CountDownTimer {
 		/**
-		 * MyCount�Ĺ��췽��
-		 * 
+		 * MyCount的构造方法
+		 *
 		 * @param millisInFuture
-		 *            Ҫ����ʱ��ʱ��
+		 *            要倒计时的时间
 		 * @param countDownInterval
-		 *            ʱ����
+		 *            时间间隔
 		 */
 		public MyCount(long millisInFuture, long countDownInterval) {
 			super(millisInFuture, countDownInterval);
@@ -112,24 +112,24 @@ public class RegNext extends Activity {
 
 		@Override
 		public void onTick(long arg0) {
-			// �ڽ��е���ʱ��ʱ��ִ�еĲ���
+			// 在进行倒计时的时候执行的操作
 			long time = arg0 / 1000;
-			// ������ʾ��ʱ��
-			gettime.setText(time + "���������»����֤��!");
+			// 设置显示的时间
+			gettime.setText(time + "秒后可以重新获得验证码!");
 			if (time == 10) {
-				gettime.setText(9 + "���������»����֤��!");
+				gettime.setText(9 + "秒后可以重新获得验证码!");
 			}
 		}
 
 		@Override
 		public void onFinish() {
-			// ����ʱ��ɺ�������(�ò��ɼ�)
+			// 倒计时完成后做的事(让不可见)
 			gettime.setVisibility(View.GONE);
 			btnagaing.setVisibility(View.VISIBLE);
 		}
 	}
 
-	// ����һ�������
+	// 产生一个随机数
 	public void RanNum() {
 		new Handler().postDelayed(new Runnable() {
 

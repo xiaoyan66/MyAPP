@@ -8,7 +8,7 @@ import android.view.Window;
 import util.ActivityCollector;
 
 /**
- * ��ӭҳ��
+ * 欢迎页面
  * @author Administrator
  *
  */

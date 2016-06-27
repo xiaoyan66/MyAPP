@@ -11,6 +11,8 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import ui.R;
+
 
 public class SerialCategoryAdapter extends BaseExpandableListAdapter {
 	private SerialDAO serialDAO;// ����

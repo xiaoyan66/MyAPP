@@ -12,12 +12,12 @@ import util.ActivityCollector;
 
 
 /**
- * �˺Ź���
+ * 账号管理
  * @author Administrator
  *
  */
 public class UserInfoManage extends Activity {
-	// �޸����롢�л��˺�
+	// 修改密码、切换账号
 	private RelativeLayout mRlUpdatePassWord;
 	private RelativeLayout mRlCutUserInfo;
 
@@ -27,9 +27,9 @@ public class UserInfoManage extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_user_info_manage);
 		ActivityCollector.addActivity(this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ���¼�
+		// 加事件
 		initEvent();
 	}
 
@@ -41,7 +41,7 @@ public class UserInfoManage extends Activity {
 	}
 
 	/**
-	 * ���¼�
+	 * 加事件
 	 */
 	private void initEvent() {
 
@@ -50,7 +50,7 @@ public class UserInfoManage extends Activity {
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mRlUpdatePassWord = (RelativeLayout) this
@@ -61,23 +61,23 @@ public class UserInfoManage extends Activity {
 	}
 
 	/**
-	 * ��������¼�
+	 * 监听点击事件
 	 */
 	OnClickListener listener = new OnClickListener() {
 
 		@Override
 		public void onClick(View v) {
 			switch (v.getId()) {
-			case R.id.rl_update_pwd:
-				// �޸�����
-				startActivity(new Intent(UserInfoManage.this, UpdatePwd.class));
-				break;
-			case R.id.rl_cut_userinfo:
-				// �л��˺�
-				startActivity(new Intent(UserInfoManage.this, Login.class));
-				break;
-			default:
-				break;
+				case R.id.rl_update_pwd:
+					// 修改密码
+					startActivity(new Intent(UserInfoManage.this, UpdatePwd.class));
+					break;
+				case R.id.rl_cut_userinfo:
+					// 切换账号
+					startActivity(new Intent(UserInfoManage.this, Login.class));
+					break;
+				default:
+					break;
 			}
 		}
 	};

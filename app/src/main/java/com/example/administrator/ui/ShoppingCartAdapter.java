@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import entity.MyEntity;
+import ui.R;
 import util.ListItemClickHelp;
 
 public class ShoppingCartAdapter extends BaseAdapter {

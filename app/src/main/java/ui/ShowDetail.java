@@ -18,7 +18,7 @@ import com.example.administrator.ui.DetailDAO;
 import util.ActivityCollector;
 
 /**
- * ��ѯ���ж��������
+ * 查询所有订单详情表
  * 
  * @author YinWenBing
  * 
@@ -36,13 +36,13 @@ public class ShowDetail extends Activity {
 		setContentView(R.layout.activity_show_detail);
 		ActivityCollector.addActivity(this);
 		detailDAO = new DetailDAO(ShowDetail.this);
-		// ��ʼ���ؼ�
+		// 初始化控件
 		initView();
-		// ��������
+		// 加载数据
 		initData();
 	}
 
-	
+
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
@@ -50,7 +50,7 @@ public class ShowDetail extends Activity {
 		ActivityCollector.removeActivity(this);
 	}
 	/*
-	 * ��������
+	 * 加载数据
 	 */
 	private void initData() {
 		ar = detailDAO.getAllDetails();
@@ -59,7 +59,7 @@ public class ShowDetail extends Activity {
 	}
 
 	/**
-	 * ��ʼ���ؼ�
+	 * 初始化控件
 	 */
 	private void initView() {
 		mLvDetails = (ListView) this.findViewById(R.id.lv_details);
@@ -72,11 +72,11 @@ public class ShowDetail extends Activity {
 
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-				long arg3) {
+								long arg3) {
 			Map map = (Map) ar.get(arg2);
-			// ������
+			// 订单号
 			String inumber = map.get("inumber").toString();
-			// ���ݶ����Ų�ѯ������
+			// 根据订单号查询订单表
 			Intent intent = new Intent(ShowDetail.this, WaitIncomeGoods.class);
 			intent.putExtra("inumber", inumber);
 			startActivity(intent);
