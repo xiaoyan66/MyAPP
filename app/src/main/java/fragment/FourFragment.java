@@ -61,33 +61,8 @@ public class FourFragment extends Fragment implements ListItemClickHelp {
 	// 结算按钮
 	private Button mBtnSettleAccounts;
 
-	// 订单表
-	private Indent indent;
-	private IndentDAO indentDAO;
-
-	private int id;
 	private List myar;
 	private ShoppingCart shoppingCart;
-
-	private Car car;
-	private CarDAO carDAO;
-	private Parts parts;
-	private PartsDAO partsDAO;
-
-	// 变量
-	private int myimage;
-	private String myname;
-	private float myprice;
-
-	//
-	private MyEntity myEntity;
-
-	private int year;
-	private int month;
-	private int day;
-	private int minute;
-	private int hour;
-	private int second;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -208,18 +183,18 @@ public class FourFragment extends Fragment implements ListItemClickHelp {
 
 			// 系统时间
 			Calendar c = Calendar.getInstance();
-			year = c.get(Calendar.YEAR);
-			month = c.get(Calendar.MONTH) + 1;
-			day = c.get(Calendar.DAY_OF_MONTH);
-			hour = c.get(Calendar.HOUR);
-			minute = c.get(Calendar.MINUTE);
-			second = c.get(Calendar.SECOND);
+			int year = c.get(Calendar.YEAR);
+			int month = c.get(Calendar.MONTH) + 1;
+			int day = c.get(Calendar.DAY_OF_MONTH);
+			int hour = c.get(Calendar.HOUR);
+			int minute = c.get(Calendar.MINUTE);
+			int second = c.get(Calendar.SECOND);
 
 			String inumber = "D" + year + "" + month + "" + day + "" + hour
 					+ "" + minute + "" + second;
 
 			for (int i = 0; i < myar.size(); i++) {
-				id = (Integer) myar.get(i);
+				int id = (Integer) myar.get(i);
 				/**
 				 * 根据购物车id查询要插入的字段，循环插入 1、根据id查询对应的购物车数据 2、判断数据来源
 				 * 3、取出对应的图片、名称、单价
@@ -231,18 +206,21 @@ public class FourFragment extends Fragment implements ListItemClickHelp {
 				int gid = shoppingCart.getGid();
 				int gcount = shoppingCart.getGcount();
 
+				int myimage;
+				String myname;
+				float myprice;
 				if (gsource == 1) {
 					// 查询汽车表
-					carDAO = new CarDAO(getActivity());
-					car = carDAO.getAllCarById(gid);
+					CarDAO carDAO = new CarDAO(getActivity());
+					Car car = carDAO.getAllCarById(gid);
 
 					myimage = car.getCimage();
 					myname = car.getCname();
 					myprice = car.getCnewprice();
 
 				} else {
-					partsDAO = new PartsDAO(getActivity());
-					parts = partsDAO.getAllPartsById(gid);
+					PartsDAO partsDAO = new PartsDAO(getActivity());
+					Parts parts = partsDAO.getAllPartsById(gid);
 
 					myimage = parts.getPimage();
 					myname = parts.getPname();
@@ -254,10 +232,10 @@ public class FourFragment extends Fragment implements ListItemClickHelp {
 						Context.MODE_PRIVATE);
 				int uid = preferences.getInt("uid", 0);
 
-				indentDAO = new IndentDAO(getActivity());
+				IndentDAO indentDAO = new IndentDAO(getActivity());
 
 				// 生成订单（图片、名称、单价、数量、订单号、用户、总价,状态）
-				indent = new Indent();
+				Indent indent = new Indent();
 				indent.setIimage(myimage);
 				indent.setIname(myname);
 				indent.setIprice(myprice);
@@ -295,7 +273,7 @@ public class FourFragment extends Fragment implements ListItemClickHelp {
 		switch (which) {
 			case R.id.ib_jian:
 				// 修改购物车数量
-				myEntity = (MyEntity) ar.get(position);
+				MyEntity myEntity = (MyEntity) ar.get(position);
 				// 购物车编号
 				int sid = myEntity.getMyid();
 				// 根据购物车编号查询购物车

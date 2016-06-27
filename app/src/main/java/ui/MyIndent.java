@@ -25,15 +25,12 @@ import fragment.NoCompleteIndent;
  *
  */
 public class MyIndent extends FragmentActivity {
-	private CompleteIndent completeIndent;// 已完成订单
-	private NoCompleteIndent noCompleteIndent;// 未完成订单
 
 	private ViewPager mVpMyIndent;
 	private Button mBtnCompleteYes;
 	private Button mBtnCompleteNo;
 
 	private FragmentManager fragmentManager;
-	private MyIndentAdapter myIndentAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -68,15 +65,15 @@ public class MyIndent extends FragmentActivity {
 		mBtnCompleteNo = (Button) this.findViewById(R.id.btn_complete_no);
 
 		// 实例化FragMent
-		completeIndent = new CompleteIndent();
-		noCompleteIndent = new NoCompleteIndent();
+		CompleteIndent completeIndent = new CompleteIndent();
+		NoCompleteIndent noCompleteIndent = new NoCompleteIndent();
 
 		// 将FragMent添加到数组中
 		List ar = new ArrayList();
 		ar.add(completeIndent);
 		ar.add(noCompleteIndent);
 
-		myIndentAdapter = new MyIndentAdapter(fragmentManager, ar);
+		MyIndentAdapter myIndentAdapter = new MyIndentAdapter(fragmentManager, ar);
 		mVpMyIndent.setAdapter(myIndentAdapter);
 
 		// 默认选择第一个

@@ -25,16 +25,10 @@ import util.ActivityCollector;
  */
 public class Search extends Activity
 {
-	// 控件
-	private ImageView mIvBack;
 	private EditText mEtSearch;
-	private ImageView mIvSearch;
 	private GridView mGvBrands;
 
 	private BrandDAO brandDAO;
-	private BrandAdapter brandAdapter;
-	private String bname;
-	private List ar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -57,9 +51,9 @@ public class Search extends Activity
 
 	private void initView()
 	{
-		mIvBack = (ImageView) this.findViewById(R.id.iv_back);
+		ImageView mIvBack = (ImageView) this.findViewById(R.id.iv_back);
 		mEtSearch = (EditText) this.findViewById(R.id.et_search);
-		mIvSearch = (ImageView) this.findViewById(R.id.iv_search);
+		ImageView mIvSearch = (ImageView) this.findViewById(R.id.iv_search);
 		mGvBrands = (GridView) this.findViewById(R.id.gv_brands);
 		mIvSearch.setOnClickListener(listener);
 		mIvBack.setOnClickListener(listener);
@@ -77,9 +71,9 @@ public class Search extends Activity
 					Search.this.finish();
 					break;
 				case R.id.iv_search:
-					bname = mEtSearch.getText().toString();
-					ar = brandDAO.getAllBrandByName(bname);
-					brandAdapter = new BrandAdapter(Search.this, ar);
+					String bname = mEtSearch.getText().toString();
+					List ar = brandDAO.getAllBrandByName(bname);
+					BrandAdapter brandAdapter = new BrandAdapter(Search.this, ar);
 					mGvBrands.setAdapter(brandAdapter);
 					break;
 				default:

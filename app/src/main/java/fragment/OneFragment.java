@@ -56,22 +56,16 @@ public class OneFragment extends Fragment {
 
 	// 广告数组
 	private List<View> ar;
-	private GuidePageAdapter adapter;
 
 	private AtomicInteger atomicInteger = new AtomicInteger();
 
 	// ImageView
 	private ImageView mImages[];
-	private ImageView mImage;
 
-	private BrandDAO brandDAO;
 	private List brandList;
-	private BrandAdapter brandAdapter;
 
 	private PartsDAO partsDAO;
-	private Parts parts;
 	private List partsList;
-	private PartsAdapter partsAdapter;
 
 	// 父容器定义的实现fragment之间通信的接口
 	private Main.MyCommunication myCommunication;
@@ -112,14 +106,14 @@ public class OneFragment extends Fragment {
 
 	// 加载数据
 	private void initData() {
-		brandDAO = new BrandDAO(getActivity());
+		BrandDAO brandDAO = new BrandDAO(getActivity());
 		brandList = brandDAO.getEightBrand();
-		brandAdapter = new BrandAdapter(getActivity(), brandList);
+		BrandAdapter brandAdapter = new BrandAdapter(getActivity(), brandList);
 		mGvbrand.setAdapter(brandAdapter);
 
 		partsDAO = new PartsDAO(getActivity());
 		partsList = partsDAO.getFourParts();
-		partsAdapter = new PartsAdapter(getActivity(), partsList);
+		PartsAdapter partsAdapter = new PartsAdapter(getActivity(), partsList);
 		mGvParts.setAdapter(partsAdapter);
 
 	}
@@ -165,12 +159,12 @@ public class OneFragment extends Fragment {
 		l3.setBackgroundResource(R.drawable.main_page4);
 		ar.add(l3);
 
-		adapter = new GuidePageAdapter(getActivity(), ar);
+		GuidePageAdapter adapter = new GuidePageAdapter(getActivity(), ar);
 		viewPager.setAdapter(adapter);
 
 		mImages = new ImageView[ar.size()];
 		for (int i = 0; i < ar.size(); i++) {
-			mImage = new ImageView(getActivity());
+			ImageView mImage = new ImageView(getActivity());
 			// 设置图片宽和高
 			LayoutParams layoutParams = new LayoutParams(9, 9);
 			layoutParams.setMargins(10, 5, 10, 5);
@@ -298,7 +292,7 @@ public class OneFragment extends Fragment {
 			// 根据品牌编号查询所有车系
 
 			partsDAO = new PartsDAO(getActivity());
-			parts = partsDAO.getAllPartsById(pid);
+			Parts parts = partsDAO.getAllPartsById(pid);
 
 			// 饰品配饰(编号，名称，图片，库存，原价，现价，品牌，介绍)
 
