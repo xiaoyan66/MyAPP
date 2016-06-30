@@ -34,7 +34,7 @@ public class PartsDAO {
 	}
 
 	/**
-	 * ��ѯʹ��������Ʒ
+	 * 查询使用汽车饰品
 	 */
 	public List getAllParts() {
 		List ar = new ArrayList();
@@ -62,7 +62,7 @@ public class PartsDAO {
 	}
 
 	/**
-	 * ��ѯ�ĸ�������Ʒ
+	 * 查询四个汽车饰品
 	 */
 	public List getFourParts() {
 		List ar = new ArrayList();
@@ -90,7 +90,7 @@ public class PartsDAO {
 	}
 
 	/**
-	 * ���ݱ�Ų�ѯ��Ʒ
+	 * 根据编号查询饰品
 	 * 
 	 * @param id
 	 * @return

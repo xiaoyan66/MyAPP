@@ -15,44 +15,44 @@ import ui.R;
 
 
 public class SerialCategoryAdapter extends BaseExpandableListAdapter {
-	private SerialDAO serialDAO;// ����
+	private SerialDAO serialDAO;// 父类
 	private Context context;
 
-	// ��ϵ��
+	// 车系表
 	private List ar;
 	private LayoutInflater inflater;
 
-	// ��䳵ϵ�������
+	// 填充车系表的数据
 	private String snames[];
 	private int sids[];
 	private int simages[];
 	private TextView sname;
 	private ImageView simage;
 
-	// ������ϸ��
+	// 汽车详细表
 	private String cnames[][];
 	private int cids[][];
 	private int cimages[][];
 
 	public SerialCategoryAdapter(Context context, List ar) {
 		this.context = context;
-		// ʵ����SerialDao
+		// 实例化SerialDao
 		serialDAO = new SerialDAO(context);
 		this.ar = ar;
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		// ʵ������ϵ������
+		// 实例化车系表数据
 		snames = new String[ar.size()];
 		sids = new int[ar.size()];
 		simages = new int[ar.size()];
 
-		// ʵ����������ϸ����
+		// 实例化汽车详细数据
 		cnames = new String[ar.size()][];
 		cids = new int[ar.size()][];
 		cimages = new int[ar.size()][];
 
-		// ��ó�ϵ������
+		// 获得车系表数据
 		for (int i = 0; i < ar.size(); i++) {
 			Map map = (Map) ar.get(i);
 			snames[i] = map.get("sname").toString();
@@ -60,10 +60,10 @@ public class SerialCategoryAdapter extends BaseExpandableListAdapter {
 			simages[i] = Integer.parseInt(map.get("simage").toString());
 		}
 
-		// �����������
+		// 获得汽车数据
 		for (int i = 0; i < sids.length; i++) {
 			int id = sids[i];
-			// ���ݳ�ϵ��ѯ��������
+			// 根据车系查询汽车详情
 			List carList = serialDAO.getAllCarBySid(id);
 			cnames[i] = new String[carList.size()];
 			cids[i] = new int[carList.size()];
@@ -90,11 +90,11 @@ public class SerialCategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * 4�����������ϸ
+	 * 4、填充汽车详细
 	 */
 	@Override
 	public View getChildView(int arg0, int arg1, boolean arg2, View arg3,
-			ViewGroup arg4) {
+							 ViewGroup arg4) {
 		ViewHolder viewHolder;
 		if (arg3 == null) {
 			arg3 = inflater.inflate(R.layout.car_names, null);
@@ -116,7 +116,7 @@ public class SerialCategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * ���������ϸ������
+	 * 获得汽车详细的数量
 	 */
 	@Override
 	public int getChildrenCount(int arg0) {
@@ -131,7 +131,7 @@ public class SerialCategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * 1.��ó�ϵ������
+	 * 1.获得车系的数量
 	 */
 	@Override
 	public int getGroupCount() {
@@ -146,7 +146,7 @@ public class SerialCategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * 2����䳵ϵ
+	 * 2、填充车系
 	 */
 	@Override
 	public View getGroupView(int arg0, boolean arg1, View arg2, ViewGroup arg3) {
@@ -177,10 +177,10 @@ public class SerialCategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * ����
-	 * 
+	 * 缓存
+	 *
 	 * @author Administrator
-	 * 
+	 *
 	 */
 	public class ViewHolder {
 		private ImageView mIvCimage;

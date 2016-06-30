@@ -18,22 +18,22 @@ public class UserInfoDAO {
 		this.context = context;
 	}
 
-	// �����ݿ�
+	// 打开数据库
 	public UserInfoDAO open() {
 		dbc = new DBConnection(context);
 		db = dbc.getWritableDatabase();
 		return this;
 	}
 
-	// �ر����ݿ�
+	// 关闭数据库
 	public void closeAll() {
 		db.close();
 		dbc.close();
 	}
 
 	/**
-	 * �����˺������ѯ�û�
-	 * 
+	 * 根据账号密码查询用户
+	 *
 	 * @param name
 	 * @param pwd
 	 * @return
@@ -62,8 +62,8 @@ public class UserInfoDAO {
 	}
 
 	/**
-	 * ע�� �������
-	 * 
+	 * 注册 添加数据
+	 *
 	 * @param userInfo
 	 */
 	public void AddUserInfo(UserInfo userInfo) {
@@ -88,7 +88,7 @@ public class UserInfoDAO {
 	}
 
 	/**
-	 * �޸�����
+	 * 修改密码
 	 */
 	public void updateUserInfoPwd(UserInfo userInfo) {
 		open();

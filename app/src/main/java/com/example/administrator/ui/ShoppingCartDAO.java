@@ -36,11 +36,11 @@ public class ShoppingCartDAO {
 	}
 
 	/**
-	 * ��ѯ���й��ﳵ����
+	 * 查询所有购物车数据
 	 */
 	public List getAll() {
 		List arr = new ArrayList();
-		// ��һ����ȫ��ѯ���ﳵ��
+		// 第一步：全查询购物车表
 		List ar = new ArrayList();
 		open();
 		try {
@@ -57,19 +57,19 @@ public class ShoppingCartDAO {
 				ar.add(map);
 			}
 
-			// �ڶ������ֱ�ȡ�������װ�α�
+			// 第二步：分别取汽车表和装饰表
 			for (int i = 0; i < ar.size(); i++) {
 				Map m = (Map) ar.get(i);
-				// ���ﳵ����
+				// 购物车主键
 				int sid = Integer.parseInt(m.get("sid").toString());
-				// ��Ʒ���
+				// 商品编号
 				int gid = Integer.parseInt(m.get("gid").toString());
-				// ��Ʒ��Դ
+				// 商品来源
 				int gsource = Integer.parseInt(m.get("gsource").toString());
-				// ��Ʒ����
+				// 商品数量
 				int gcount = Integer.parseInt(m.get("gcount").toString());
 
-				// �ж���Ʒ��Դ��1��������2�����α�
+				// 判断商品来源：1、汽车表2、配饰表
 				if (gsource == 1) {
 					Cursor c1 = db.rawQuery("select * from car where _id=?",
 							new String[] { String.valueOf(gid) });
@@ -124,7 +124,7 @@ public class ShoppingCartDAO {
 	}
 
 	/**
-	 * ���빺�ﳵ
+	 * 加入购物车
 	 */
 	public void addShoppingCart(ShoppingCart cart) {
 		open();
@@ -153,7 +153,7 @@ public class ShoppingCartDAO {
 	}
 
 	/**
-	 * ���ݱ�Ų�ѯ���ﳵ
+	 * 根据编号查询购物车
 	 */
 	public ShoppingCart getShoppingCart(int sid) {
 		ShoppingCart shoppingCart = null;
@@ -181,7 +181,7 @@ public class ShoppingCartDAO {
 	}
 
 	/**
-	 * ɾ�����ﳵ
+	 * 删除购物车
 	 */
 	public void delShoppingcart(int id) {
 		open();
@@ -195,8 +195,8 @@ public class ShoppingCartDAO {
 	}
 
 	/***
-	 * ������Ʒ��ź���Դ���һ�����ﳵ�����
-	 * 
+	 * 根据商品编号和来源获得一个购物车表对象
+	 *
 	 * @param gid
 	 * @return
 	 */
@@ -229,8 +229,8 @@ public class ShoppingCartDAO {
 	}
 
 	/**
-	 * �޸Ĺ��ﳵ����
-	 * 
+	 * 修改购物车数量
+	 *
 	 * @param shoppingCart
 	 */
 	public void updateShoppingcart(ShoppingCart shoppingCart) {

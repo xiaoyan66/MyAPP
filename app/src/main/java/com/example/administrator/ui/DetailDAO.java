@@ -33,7 +33,7 @@ public class DetailDAO {
 	}
 
 	/**
-	 * ���ɶ�������
+	 * 生成订单详情
 	 * 
 	 * @param detail
 	 */
@@ -55,7 +55,7 @@ public class DetailDAO {
 	}
 
 	/**
-	 * ��ѯ��������ɶ���
+	 * 查询所有已完成订单
 	 */
 	public List getAllDetails() {
 		List ar = new ArrayList();
@@ -83,7 +83,7 @@ public class DetailDAO {
 	}
 
 	/**
-	 * ��ѯ��������ɶ���
+	 * 查询所有已完成订单
 	 */
 	public List getAllDetailsByDstate(int dstate) {
 		List ar = new ArrayList();

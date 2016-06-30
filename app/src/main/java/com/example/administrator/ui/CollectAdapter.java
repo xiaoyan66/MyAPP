@@ -13,12 +13,11 @@ import android.widget.TextView;
 import ui.R;
 
 public class CollectAdapter extends BaseAdapter {
-	private Context context;
 	private List ar;
 	private LayoutInflater inflater;
 
 	public CollectAdapter(Context context, List ar) {
-		this.context = context;
+		Context context1 = context;
 		this.ar = ar;
 		inflater = LayoutInflater.from(context);
 	}

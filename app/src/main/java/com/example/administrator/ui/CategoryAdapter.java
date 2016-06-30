@@ -15,44 +15,40 @@ import ui.R;
 
 
 public class CategoryAdapter extends BaseExpandableListAdapter {
-	private BrandDAO brandDAO;
-	private Context context;
 
-	// Ʒ�Ʊ� Brand
+	// 品牌表 Brand
 	private List ar;
 	private LayoutInflater inflater;
 
-	// ���Ʒ�Ʊ������
+	// 填充品牌表的数据
 	private String bnames[];
-	private int bids[];
 	private int bimages[];
-	private TextView bname;
 	private ImageView bimage;
 
-	// ��ϵ��(serial)�Ķ�ά����
-	private String snames[][];// ��ŵ���ÿһ�����������������
+	// 车系表(serial)的二维数组
+	private String snames[][];// 存放的是每一个总类下子类的名称
 	private int sids[][];
 	private int simages[][];
 
 	public CategoryAdapter(Context context, List ar) {
-		this.context = context;
-		// ʵ����brandDAO
-		brandDAO = new BrandDAO(context);
+		Context context1 = context;
+		// 实例化brandDAO
+		BrandDAO brandDAO = new BrandDAO(context);
 		this.ar = ar;
 		inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-		// ʵ����Ʒ�����ƺ�Ʒ�Ʊ������
+		// 实例化品牌名称和品牌编号数组
 		bnames = new String[ar.size()];
-		bids = new int[ar.size()];
+		int[] bids = new int[ar.size()];
 		bimages = new int[ar.size()];
 
-		// ʵ������ϵ����
+		// 实例化车系数组
 		snames = new String[ar.size()][];
 		sids = new int[ar.size()][];
 		simages = new int[ar.size()][];
 
-		// ��ȡƷ�����ƺͱ��
+		// 获取品牌名称和编号
 		for (int i = 0; i < ar.size(); i++) {
 			Map map = (Map) ar.get(i);
 			bnames[i] = map.get("bname").toString();
@@ -60,7 +56,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 			bimages[i] = Integer.parseInt(map.get("bimage").toString());
 		}
 
-		// ��ó�ϵ���ƺͱ��
+		// 获得车系名称和编号
 		for (int i = 0; i < bids.length; i++) {
 			int id = bids[i];
 			List data = brandDAO.getAllSerial(id);
@@ -90,7 +86,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * 1�� ���Ʒ�Ƶ�����
+	 * 1、 获得品牌的数量
 	 */
 	@Override
 	public int getGroupCount() {
@@ -99,10 +95,11 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * 2�����Ʒ��
+	 * 2、填充品牌
 	 */
 	@Override
 	public View getGroupView(int arg0, boolean arg1, View arg2, ViewGroup arg3) {
+		TextView bname;
 		if (arg2 == null) {
 			arg2 = inflater.inflate(R.layout.brand_names, null);
 			bname = (TextView) arg2.findViewById(R.id.tv_bname);
@@ -117,7 +114,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * 3����ó�ϵ������
+	 * 3、获得车系的数量
 	 */
 	@Override
 	public int getChildrenCount(int arg0) {
@@ -125,11 +122,11 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
 	}
 
 	/**
-	 * 4�� ��䳵ϵ
+	 * 4、 填充车系
 	 */
 	@Override
 	public View getChildView(int arg0, int arg1, boolean arg2, View arg3,
-			ViewGroup arg4) {
+							 ViewGroup arg4) {
 		ViewHolder viewHolder;
 		if (arg3 == null) {
 			arg3 = inflater.inflate(R.layout.serial_names, null);

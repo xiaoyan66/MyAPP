@@ -14,12 +14,11 @@ import ui.R;
 
 
 public class DetailAdapter extends BaseAdapter {
-	private Context context;
 	private List ar;
 	private LayoutInflater inflater;
 
 	public DetailAdapter(Context context, List ar) {
-		this.context = context;
+		Context context1 = context;
 		this.ar = ar;
 		inflater = LayoutInflater.from(context);
 	}
@@ -61,10 +60,11 @@ public class DetailAdapter extends BaseAdapter {
 		holder.mTvDnumber.setText(map.get("inumber").toString());
 		holder.mTvDtime.setText(map.get("dtime").toString());
 		int dstate = Integer.parseInt(map.get("dstate").toString());
+
 		if (dstate == 1) {
-			holder.mTvDstate.setText("�Ѹ���");
+			holder.mTvDstate.setText("已付款");
 		} else {
-			holder.mTvDstate.setText("δ����");
+			holder.mTvDstate.setText("未付款");
 		}
 
 		holder.mTvDmoney.setText(map.get("dallprice").toString());

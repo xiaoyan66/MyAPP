@@ -13,12 +13,11 @@ import android.widget.TextView;
 import ui.R;
 
 public class CarAdapter extends BaseAdapter {
-	private Context context;
 	private List ar;
 	private LayoutInflater inflater;
 
 	public CarAdapter(Context context, List ar) {
-		this.context = context;
+		Context context1 = context;
 		this.ar = ar;
 		inflater = LayoutInflater.from(context);
 	}

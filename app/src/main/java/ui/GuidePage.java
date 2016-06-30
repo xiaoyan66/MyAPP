@@ -34,13 +34,10 @@ import util.ActivityCollector;
  */
 public class GuidePage extends Activity {
 	private ViewPager mGuidePage;
-	private Button mBtnJoin;
 
 	private List<View> ar;
-	private GuidePageAdapter adapter;
 
 	private ImageView[] mImages;
-	private ImageView mImage;
 
 
 	/**
@@ -56,7 +53,6 @@ public class GuidePage extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_guide_page);
 		ActivityCollector.addActivity(this);
-		// ��ʼ���ؼ�
 		initView();
 	}
 
@@ -93,7 +89,7 @@ public class GuidePage extends Activity {
 		LinearLayout l3 = (LinearLayout) v3.findViewById(R.id.page_item);
 		l3.setBackgroundResource(R.drawable.guide_page_4);
 		// 初始化“立即体验按钮”
-		mBtnJoin = (Button) v3.findViewById(R.id.btn_join);
+		Button mBtnJoin = (Button) v3.findViewById(R.id.btn_join);
 		// 设置按钮可见
 		mBtnJoin.setVisibility(View.VISIBLE);
 		// 按钮点击事件
@@ -101,14 +97,14 @@ public class GuidePage extends Activity {
 		ar.add(l3);
 
 		// 第三步：实例化适配器
-		adapter = new GuidePageAdapter(GuidePage.this, ar);
+		GuidePageAdapter adapter = new GuidePageAdapter(GuidePage.this, ar);
 		// 将页面绑定到ViewPager上面
 		mGuidePage.setAdapter(adapter);
 
 		// 给ViewGroup添加图片数组
 		mImages = new ImageView[ar.size()];
 		for (int i = 0; i < ar.size(); i++) {
-			mImage = new ImageView(GuidePage.this);
+			ImageView mImage = new ImageView(GuidePage.this);
 			// 设置图片宽高
 			LayoutParams layoutParams = new LayoutParams(9, 9);
 			// 设置四周边距

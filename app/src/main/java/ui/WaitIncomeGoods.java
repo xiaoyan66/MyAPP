@@ -21,8 +21,6 @@ import util.ActivityCollector;
 public class WaitIncomeGoods extends Activity {
 	private ListView mLvWaits;
 	private IndentDAO indentDAO;
-	private IndentAdapter indentAdapter;
-	private List ar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +48,8 @@ public class WaitIncomeGoods extends Activity {
 	private void initData() {
 		Intent intent = getIntent();
 		String inumber = intent.getStringExtra("inumber");
-		ar = indentDAO.getAllIndent(inumber);
-		indentAdapter = new IndentAdapter(WaitIncomeGoods.this, ar);
+		List ar = indentDAO.getAllIndent(inumber);
+		IndentAdapter indentAdapter = new IndentAdapter(WaitIncomeGoods.this, ar);
 		mLvWaits.setAdapter(indentAdapter);
 	}
 

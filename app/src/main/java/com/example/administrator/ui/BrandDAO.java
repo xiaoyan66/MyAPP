@@ -33,8 +33,8 @@ public class BrandDAO {
 	}
 
 	/**
-	 * ��ѯ��������Ʒ��
-	 * 
+	 * 查询所有汽车品牌
+	 *
 	 * @return
 	 */
 	public List getAllBrand() {
@@ -59,7 +59,7 @@ public class BrandDAO {
 	}
 
 	/**
-	 * ��ѯ�˸�����Ʒ��
+	 * 查询八个汽车品牌
 	 */
 	public List getEightBrand() {
 		List ar = new ArrayList();
@@ -83,8 +83,8 @@ public class BrandDAO {
 	}
 
 	/**
-	 * ����Ʒ�Ʊ�Ų�ѯ���г�ϵ
-	 * 
+	 * 根据品牌编号查询所有车系
+	 *
 	 * @param bid
 	 * @return
 	 */
@@ -110,8 +110,8 @@ public class BrandDAO {
 	}
 
 	/**
-	 * ��������ģ����ѯ����Ʒ��
-	 * 
+	 * 根据名称模糊查询汽车品牌
+	 *
 	 * @return
 	 */
 	public List getAllBrandByName(String name) {

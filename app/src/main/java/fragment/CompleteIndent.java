@@ -31,8 +31,6 @@ public class CompleteIndent extends Fragment
 	private View view;
 	private ListView mLvIndent;
 	private List ar;
-	private DetailAdapter detailAdapter;
-	private DetailDAO detailDAO;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,9 +50,9 @@ public class CompleteIndent extends Fragment
 	 */
 	private void initData()
 	{
-		detailDAO = new DetailDAO(getActivity());
+		DetailDAO detailDAO = new DetailDAO(getActivity());
 		ar = detailDAO.getAllDetailsByDstate(1);
-		detailAdapter = new DetailAdapter(getActivity(), ar);
+		DetailAdapter detailAdapter = new DetailAdapter(getActivity(), ar);
 		mLvIndent.setAdapter(detailAdapter);
 	}
 

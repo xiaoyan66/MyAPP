@@ -33,7 +33,7 @@ public class SerialDAO {
 	}
 
 	/**
-	 * ����Ʒ�Ʊ�Ų�ѯ���г�ϵ
+	 *根据品牌编号查询所有车系
 	 * 
 	 * @return
 	 */
@@ -59,7 +59,7 @@ public class SerialDAO {
 	}
 
 	/**
-	 * ���ݳ�ϵ��ѯ���г���
+	 * 根据车系查询所有车辆
 	 * 
 	 * @param sid
 	 * @return

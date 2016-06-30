@@ -27,7 +27,6 @@ public class ShowDetail extends Activity {
 	private ListView mLvDetails;
 	private List ar;
 	private DetailDAO detailDAO;
-	private DetailAdapter detailAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +53,7 @@ public class ShowDetail extends Activity {
 	 */
 	private void initData() {
 		ar = detailDAO.getAllDetails();
-		detailAdapter = new DetailAdapter(ShowDetail.this, ar);
+		DetailAdapter detailAdapter = new DetailAdapter(ShowDetail.this, ar);
 		mLvDetails.setAdapter(detailAdapter);
 	}
 

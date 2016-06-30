@@ -68,7 +68,7 @@ public class CollectDAO
 	}
 
 	/***
-	 * ������Ʒ��Ż��һ���ղر����
+	 * 根据商品编号获得一个收藏表对象
 	 * 
 	 * @param gid
 	 * @return
@@ -107,7 +107,7 @@ public class CollectDAO
 	}
 
 	/**
-	 * �����ղ�
+	 * 加入收藏
 	 */
 	public void addCollect(Collect collect)
 	{

@@ -33,7 +33,7 @@ public class CarDAO {
 	}
 
 	/**
-	 * ���ݳ�ϵ��ѯ���г���
+	 *根据车系查询所有车辆
 	 * 
 	 * @param sid
 	 * @return
@@ -68,7 +68,7 @@ public class CarDAO {
 	}
 
 	/**
-	 * ���ݱ�Ų�ѯ����
+	 * 根据编号查询车辆
 	 * 
 	 * @param id
 	 * @return

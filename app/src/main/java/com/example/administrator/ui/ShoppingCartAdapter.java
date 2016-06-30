@@ -67,7 +67,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
 			holder.mTvGprice = (TextView) arg1.findViewById(R.id.tv_gprice);
 			holder.mTvGcount = (TextView) arg1.findViewById(R.id.tv_gcount);
 
-			// �Ӽ���ť
+			// 加减按钮
 			holder.mIbJian = (ImageButton) arg1.findViewById(R.id.ib_jian);
 			holder.mIbSum = (ImageButton) arg1.findViewById(R.id.ib_sum);
 
@@ -82,7 +82,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
 		holder.mTvGcount.setText(myEntity.getMycount() + "");
 		holder.mCbCheck.setChecked(myEntity.isChecked());
 
-		// �Ӽ���ť
+		// 加减按钮
 		final View view = arg1;
 		final int p = position;
 		final int jian = holder.mIbJian.getId();
@@ -125,13 +125,13 @@ public class ShoppingCartAdapter extends BaseAdapter {
 					}
 				}
 
-				// ͨ����ͼ������㲥�ġ�Ƶ��������Ҫ�㲥������
+				// 通过意图来定义广播的“频道”和需要广播的内容
 				Intent intent = new Intent();
 				intent.setAction("87.6");
 				intent.putExtra("sum", sum);
 				intent.putIntegerArrayListExtra("myar",
 						(ArrayList<Integer>) myar);
-				context.sendBroadcast(intent);// ���͹㲥
+				context.sendBroadcast(intent);// 发送广播
 			}
 		});
 
@@ -140,7 +140,7 @@ public class ShoppingCartAdapter extends BaseAdapter {
 
 					@Override
 					public void onCheckedChanged(CompoundButton arg0,
-							boolean arg1) {
+												 boolean arg1) {
 						MyEntity myEntity = (MyEntity) ar.get(position);
 						myEntity.setChecked(arg1);
 
@@ -152,18 +152,18 @@ public class ShoppingCartAdapter extends BaseAdapter {
 							if (entity.isChecked()) {
 								sum = sum
 										+ (entity.getMycount() * entity
-												.getMyprice());
+										.getMyprice());
 								id = entity.getMyid();
 								myar.add(id);
 							}
 						}
-						// ͨ����ͼ������㲥�ġ�Ƶ��������Ҫ�㲥������
+						// 通过意图来定义广播的“频道”和需要广播的内容
 						Intent intent = new Intent();
 						intent.setAction("87.6");
 						intent.putExtra("sum", sum);
 						intent.putIntegerArrayListExtra("myar",
 								(ArrayList<Integer>) myar);
-						context.sendBroadcast(intent);// ���͹㲥
+						context.sendBroadcast(intent);// 发送广播
 					}
 				});
 

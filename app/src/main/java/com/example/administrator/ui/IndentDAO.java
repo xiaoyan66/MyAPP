@@ -35,7 +35,7 @@ public class IndentDAO {
 	}
 
 	/**
-	 * ��ѯ����
+	 * 查询订单
 	 */
 	public List getAllIndent(String inumber) {
 		List ar = new ArrayList();
@@ -44,7 +44,7 @@ public class IndentDAO {
 			Cursor c = db.rawQuery("select * from indent where inumber=?",
 					new String[] { inumber });
 			while (c.moveToNext()) {
-				// ����š�ͼƬ�����ơ����ۡ������������š��û����ܼۣ�
+				// （编号、图片、名称、单价、数量、订单号、用户、总价）
 				Map map = new HashMap();
 				map.put("_id", c.getInt(c.getColumnIndex("_id")));
 				map.put("iimage", c.getInt(c.getColumnIndex("iimage")));
@@ -66,7 +66,7 @@ public class IndentDAO {
 	}
 
 	/**
-	 * ���ݱ�Ų�ѯ����
+	 * 根据编号查询订单
 	 */
 	public Indent getIndentById(int id) {
 		Indent indent = null;
@@ -75,7 +75,7 @@ public class IndentDAO {
 			Cursor c = db.rawQuery("select * from indent where _id=?",
 					new String[] { String.valueOf(id) });
 			while (c.moveToNext()) {
-				// ����š�ͼƬ�����ơ����ۡ������������š��û����ܼۣ�
+				// （编号、图片、名称、单价、数量、订单号、用户、总价）
 				int _id = c.getInt(c.getColumnIndex("_id"));
 				int iimage = c.getInt(c.getColumnIndex("iimage"));
 				String iname = c.getString(c.getColumnIndex("iname"));
@@ -97,8 +97,8 @@ public class IndentDAO {
 	}
 
 	/**
-	 * ���ɶ���
-	 * 
+	 * 生成订单
+	 *
 	 * @param indent
 	 */
 	public void addIndent(Indent indent) {
@@ -121,7 +121,7 @@ public class IndentDAO {
 	}
 
 	/**
-	 * ɾ������
+	 * 删除所有
 	 */
 	public void delAll() {
 		open();
@@ -134,8 +134,8 @@ public class IndentDAO {
 	}
 
 	/**
-	 * �޸�
-	 * 
+	 * 修改
+	 *
 	 * @param indent
 	 */
 	public void updateIndent(Indent indent) {
@@ -159,7 +159,7 @@ public class IndentDAO {
 	}
 
 	/**
-	 * ��ѯ����δ����Ķ���
+	 * 查询所有未付款的订单
 	 */
 	public List getAllIndentByDstate(int dstate) {
 		List ar = new ArrayList();
@@ -168,7 +168,7 @@ public class IndentDAO {
 			Cursor c = db.rawQuery("select * from indent where dstate=?",
 					new String[] { String.valueOf(dstate) });
 			while (c.moveToNext()) {
-				// ����š�ͼƬ�����ơ����ۡ������������š��û����ܼۣ�
+				// （编号、图片、名称、单价、数量、订单号、用户、总价）
 				Map map = new HashMap();
 				map.put("_id", c.getInt(c.getColumnIndex("_id")));
 				map.put("iimage", c.getInt(c.getColumnIndex("iimage")));

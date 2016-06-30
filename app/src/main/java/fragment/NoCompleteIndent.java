@@ -18,9 +18,6 @@ import ui.R;
 public class NoCompleteIndent extends Fragment {
 	private View view;
 	private ListView mLvIndent;
-	private List ar;
-	private IndentAdapter indentAdapter;
-	private IndentDAO indentDAO;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,9 +34,9 @@ public class NoCompleteIndent extends Fragment {
 	 * 加载数据
 	 */
 	private void initData() {
-		indentDAO = new IndentDAO(getActivity());
-		ar = indentDAO.getAllIndentByDstate(0);
-		indentAdapter = new IndentAdapter(getActivity(), ar);
+		IndentDAO indentDAO = new IndentDAO(getActivity());
+		List ar = indentDAO.getAllIndentByDstate(0);
+		IndentAdapter indentAdapter = new IndentAdapter(getActivity(), ar);
 		mLvIndent.setAdapter(indentAdapter);
 	}
 
