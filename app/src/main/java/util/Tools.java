@@ -4,7 +4,7 @@ import android.os.Environment;
 
 public class Tools {
 	/**
-	 * ����Ƿ����SD��
+	 *
 	 */
 	public static boolean hasSdcard() {
 		String state = Environment.getExternalStorageState();

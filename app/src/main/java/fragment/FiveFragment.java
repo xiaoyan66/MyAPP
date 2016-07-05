@@ -23,6 +23,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ui.Ex44Activity;
 import ui.Login;
 import ui.MyIndent;
 import ui.R;
@@ -35,7 +36,7 @@ import view.RoundImageView;
 /**
  * 个人信息界面
  * 
- * @author YinWenBing Create at 2016-3-13 ����14:23
+ * @author YinWenBing Create at 2016-3-13 14:23
  */
 public class FiveFragment extends Fragment {
 	private View view;
@@ -54,13 +55,11 @@ public class FiveFragment extends Fragment {
 	private static final int CAMERA_REQUEST_CODE = 1;// 拍照请求码
 	private static final int RESULT_REQUEST_CODE = 2;// 结果请求码
 
-	// 用户缓存
-	private SharedPreferences preferences;
-
 	// 我的订单、我的收藏、账号管理
 	private RelativeLayout mRlAppoint;
 	private RelativeLayout mRlCollects;
 	private RelativeLayout mRlInfo;
+	private RelativeLayout mRlInf;
 	private boolean login;
 
 	@Override
@@ -70,7 +69,7 @@ public class FiveFragment extends Fragment {
 		// 初始化控件
 		initView();
 		// 登录成功之后，获得用户头像
-		preferences = getActivity().getSharedPreferences("Login",
+		SharedPreferences preferences = getActivity().getSharedPreferences("Login",
 				Context.MODE_PRIVATE);
 		int uimage = preferences.getInt("uimage", 0);
 		login = preferences.getBoolean("login", false);
@@ -91,6 +90,7 @@ public class FiveFragment extends Fragment {
 		mRlAppoint = (RelativeLayout) view.findViewById(R.id.rl_appoint);
 		mRlCollects = (RelativeLayout) view.findViewById(R.id.rl_collects);
 		mRlInfo = (RelativeLayout) view.findViewById(R.id.rl_info);
+		mRlInf = (RelativeLayout) view.findViewById(R.id.rl_inf);
 
 		// 监听事件
 		mIvUimage.setOnClickListener(iv_listener);
@@ -99,6 +99,7 @@ public class FiveFragment extends Fragment {
 		mRlAppoint.setOnClickListener(iv_listener);
 		mRlCollects.setOnClickListener(iv_listener);
 		mRlInfo.setOnClickListener(iv_listener);
+		mRlInf.setOnClickListener(iv_listener);
 	}
 
 	OnClickListener iv_listener = new OnClickListener() {
@@ -145,6 +146,16 @@ public class FiveFragment extends Fragment {
 								UserInfoManage.class));
 					} else {
 						Toast.makeText(getActivity(), "请先登录", Toast.LENGTH_SHORT).show();
+					}
+
+					break;
+				case R.id.rl_inf:
+
+					if (login == true) {
+						startActivity(new Intent(getActivity(),
+								Ex44Activity.class));
+					} else {
+						Toast.makeText(getActivity(), "无法获取", Toast.LENGTH_SHORT).show();
 					}
 
 					break;
